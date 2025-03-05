@@ -7,7 +7,6 @@ import {
   LifeBuoy,
   Map,
   PieChart,
-  Send,
   Settings,
   SquareTerminal,
 } from "lucide-react";
@@ -25,79 +24,164 @@ import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import Link from "next/link";
 import Logo from "@/assets/svgs/Logo";
+import { useUser } from "@/context/UserContext";
 
-const data = {
-  navMain: [
+// const data = {
+//   navMain: [
+//     {
+//       title: "Dashboard",
+//       url: "/user/dashboard",
+//       icon: SquareTerminal,
+//       isActive: true,
+//     },
+//     {
+//       title: "Shoppping",
+//       url: "/user/shop/products",
+//       icon: Bot,
+//       items: [
+//         {
+//           title: "Manage Products",
+//           url: "/user/shop/products",
+//         },
+//         {
+//           title: "Manage Categories",
+//           url: "/user/shop/category",
+//         },
+//         {
+//           title: "Manage Brands",
+//           url: "/user/shop/brand",
+//         },
+//       ],
+//     },
+
+//     {
+//       title: "Settings",
+//       url: "#",
+//       icon: Settings,
+//       items: [
+//         {
+//           title: "Profile",
+//           url: "/profile",
+//         },
+//       ],
+//     },
+//   ],
+//   navSecondary: [
+//     {
+//       title: "Support",
+//       url: "#",
+//       icon: LifeBuoy,
+//     },
+//     {
+//       title: "Feedback",
+//       url: "#",
+//       icon: Send,
+//     },
+//   ],
+//   projects: [
+//     {
+//       name: "Design Engineering",
+//       url: "#",
+//       icon: Frame,
+//     },
+//     {
+//       name: "Sales & Marketing",
+//       url: "#",
+//       icon: PieChart,
+//     },
+//     {
+//       name: "Travel",
+//       url: "#",
+//       icon: Map,
+//     },
+//   ],
+// };
+
+// Define role-based navigation
+
+
+const navMenus : Record<string, { title: string; url: string; icon: any; isActive?:boolean; }[]> = {
+  admin: [
     {
       title: "Dashboard",
-      url: "/user/dashboard",
+      url: "/admin/dashboard",
       icon: SquareTerminal,
       isActive: true,
     },
     {
-      title: "Shop",
-      url: "/user/shop/products",
+      title: "User Management",
+      url: "/admin/users",
       icon: Bot,
-      items: [
-        {
-          title: "Manage Products",
-          url: "/user/shop/products",
-        },
-        {
-          title: "Manage Categories",
-          url: "/user/shop/category",
-        },
-        {
-          title: "Manage Brands",
-          url: "/user/shop/brand",
-        },
-      ],
     },
-
+    {
+      title: "ghura dum",
+      url: "/admin/users",
+      icon: Bot,
+    },
     {
       title: "Settings",
-      url: "#",
+      url: "/admin/settings",
       icon: Settings,
-      items: [
-        {
-          title: "Profile",
-          url: "/profile",
-        },
-      ],
     },
   ],
-  navSecondary: [
+  landlord: [
     {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
+      title: "Dashboard",
+      url: "/landlord/dashboard",
+      icon: SquareTerminal,
+      isActive: true,
     },
     {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
+      title: "Manage Properties",
+      url: "/landlord/properties",
+      icon: Map,
     },
-  ],
-  projects: [
     {
-      name: "Design Engineering",
-      url: "#",
+      title: "Tenants",
+      url: "/landlord/tenants",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
+      title: "agdums",
+      url: "/landlord/tenants",
+      icon: Frame,
+    },
+    {
+      title: "Settings",
+      url: "/landlord/settings",
+      icon: Settings,
+    },
+  ],
+  tenant: [
+    {
+      title: "Dashboard",
+      url: "/tenant/dashboard",
+      icon: SquareTerminal,
+      isActive: true,
+    },
+    {
+      title: "My Rent",
+      url: "/tenant/rent",
       icon: PieChart,
     },
     {
-      name: "Travel",
-      url: "#",
-      icon: Map,
+      title: "Support",
+      url: "/tenant/support",
+      icon: LifeBuoy,
+    },
+    {
+      title: "Settings",
+      url: "/tenant/settings",
+      icon: Settings,
     },
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar> & { userRole: "admin" | "landlord" | "tenant" }) {
+  const { user,  } = useUser();
+  const userRole = user?.role || "tenant"; // default to "tenant" if no role found
+  const navItems = navMenus[userRole] || [];
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -117,7 +201,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={navItems}  />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />

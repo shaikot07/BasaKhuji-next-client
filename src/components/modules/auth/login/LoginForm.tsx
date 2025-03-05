@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { loginSchema } from "./loginValidation";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { useUser } from "@/context/UserContext";
 
 export default function LoginForm() {
   const form = useForm({
@@ -29,6 +30,7 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");
   const router = useRouter();
+  const {setIsLoading}=useUser(); //ai ta add korren
 
   const {
     formState: { isSubmitting },
@@ -38,7 +40,8 @@ export default function LoginForm() {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      const res = await loginUser(data);
+      const res = await loginUser(data);   //here is the login function
+      setIsLoading(true)
       if (res?.success) {
         toast.success(res?.message);
         if (redirect) {

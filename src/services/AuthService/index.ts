@@ -27,7 +27,8 @@ export const registerUser = async (userData: FieldValues) => {
 
 export const loginUser = async (userData: FieldValues) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/auth/login`, {
+    console.log('test the env',process.env.NEXT_PUBLIC_BASE_API);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/auth/login`, { 
       method: "POST",
       headers: {
         "Content-Type": "application/json",

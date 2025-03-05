@@ -1,7 +1,8 @@
 "use client";
+import { useState } from "react";
 import Logo from "@/assets/svgs/Logo";
 import { Button } from "../ui/button";
-import { Heart, LogOut, ShoppingBag } from "lucide-react";
+import { LogOut, Menu, ShoppingBag, X } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -21,6 +22,7 @@ export default function Navbar() {
   const { user, setIsLoading } = useUser();
   const pathname = usePathname();
   const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogOut = () => {
     logout();
@@ -30,6 +32,58 @@ export default function Navbar() {
     }
   };
 
+  const menu = (
+    <ul className="list-none flex flex-col md:flex-row gap-4">
+      <li>
+        <Link
+          className="rounded-none text-black font-bold border-b-0 hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+          href={"/"}
+        >
+          Home
+        </Link>
+      </li>
+      {user ? (
+        <>
+          <li>
+            <Link
+              className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+              href={"/product"}
+            >
+              All Product
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+              href={"/aboutUs"}
+            >
+              About us
+            </Link>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link
+              className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+              href={"/product"}
+            >
+              All Product
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+              href={"/aboutUs"}
+            >
+              About us
+            </Link>
+          </li>
+        </>
+      )}
+    </ul>
+  );
+
   return (
     <header className="border-b bg-background w-full sticky top-0 z-10">
       <div className="container flex justify-between items-center mx-auto h-16 px-5">
@@ -38,21 +92,34 @@ export default function Navbar() {
             <Logo /> Next Mart
           </h1>
         </Link>
-        <div className="max-w-md  flex-grow">
-          <input
-            type="text"
-            placeholder="Search for products"
-            className="w-full max-w-6xl border border-gray-300 rounded-full py-2 px-5"
-          />
-        </div>
-        <nav className="flex gap-2">
-          <Button variant="outline" className="rounded-full p-0 size-10">
-            <Heart />
-          </Button>
-          <Button variant="outline" className="rounded-full p-0 size-10">
-            <ShoppingBag />
-          </Button>
 
+        {/* Nav Menu */}
+        <div className="hidden md:flex">{menu}</div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 rounded-full bg-gray-100"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="absolute top-16 left-0 w-full bg-white shadow-lg py-4 px-6 flex flex-col items-start md:hidden">
+            {/* Close Button Inside Menu */}
+            <button
+              className="self-end p-2 mb-4 text-gray-700 hover:text-red-500"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <X size={24} />
+            </button>
+            {menu}
+          </div>
+        )}
+
+        {/* Right Icons & User Profile */}
+        <nav className="flex gap-2">
           {user?.email ? (
             <>
               <Link href="/create-shop">
