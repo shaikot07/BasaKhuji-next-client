@@ -99,8 +99,16 @@ import { useUser } from "@/context/UserContext";
 
 // Define role-based navigation
 
-
-const navMenus : Record<string, { title: string; url: string; icon: any; isActive?:boolean; }[]> = {
+const navMenus: Record<
+  string,
+  {
+    title: string;
+    url: string;
+    icon: any;
+    isActive?: boolean;
+    items?: { title: string; url: string }[];
+  }[]
+> = {
   admin: [
     {
       title: "Dashboard",
@@ -110,8 +118,22 @@ const navMenus : Record<string, { title: string; url: string; icon: any; isActiv
     },
     {
       title: "User Management",
-      url: "/admin/users",
+      url: "/admin/dashboard",
       icon: Bot,
+      items: [
+        {
+          title: "Manage users",
+          url: "/admin/users",
+        },
+        {
+          title: "Manage Categories",
+          url: "/user/shop/category",
+        },
+        {
+          title: "Manage Brands",
+          url: "/user/shop/brand",
+        },
+      ],
     },
     {
       title: "ghura dum",
@@ -122,8 +144,15 @@ const navMenus : Record<string, { title: string; url: string; icon: any; isActiv
       title: "Settings",
       url: "/admin/settings",
       icon: Settings,
+      items: [
+        {
+          title: "Profile",
+          url: "/profile",
+        },
+      ],
     },
   ],
+  // --------lanload ----
   landlord: [
     {
       title: "Dashboard",
@@ -135,6 +164,20 @@ const navMenus : Record<string, { title: string; url: string; icon: any; isActiv
       title: "Manage Properties",
       url: "/landlord/properties",
       icon: Map,
+      items: [
+        {
+          title: "Properties",
+          url: "/admin/users",
+        },
+        {
+          title: "Manage Rent Requests",
+          url: "/user/shop/category",
+        },
+        {
+          title: "Manage Brands",
+          url: "/user/shop/brand",
+        },
+      ],
     },
     {
       title: "Tenants",
@@ -150,8 +193,15 @@ const navMenus : Record<string, { title: string; url: string; icon: any; isActiv
       title: "Settings",
       url: "/landlord/settings",
       icon: Settings,
+      items: [
+        {
+          title: "Profile",
+          url: "/profile",
+        },
+      ],
     },
   ],
+  // ----tenant------
   tenant: [
     {
       title: "Dashboard",
@@ -173,13 +223,22 @@ const navMenus : Record<string, { title: string; url: string; icon: any; isActiv
       title: "Settings",
       url: "/tenant/settings",
       icon: Settings,
+      items: [
+        {
+          title: "Profile",
+          url: "/profile",
+        },
+      ],
     },
   ],
 };
 
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar> & { userRole: "admin" | "landlord" | "tenant" }) {
-  const { user,  } = useUser();
+export function AppSidebar({
+  ...props
+}: React.ComponentProps<typeof Sidebar> & {
+  userRole: "admin" | "landlord" | "tenant";
+}) {
+  const { user } = useUser();
   const userRole = user?.role || "tenant"; // default to "tenant" if no role found
   const navItems = navMenus[userRole] || [];
   return (
@@ -201,7 +260,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar> & 
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={navItems}  />
+        <NavMain items={navItems} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />
