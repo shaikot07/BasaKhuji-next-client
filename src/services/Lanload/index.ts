@@ -60,28 +60,34 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
     }
   };
   
-  // update rental house 
-  export const LanloadGetWonRentalHouse = async (
-    rentalHouseData: FormData,
-    houseId: string
-  ): Promise<any> => {
+  // get all rental house  lanload won
+  export const LanloadGetWonRentalHouse = async (): Promise<any> => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API}/product/${houseId}`,
-        {
-          method: "PATCH",
-          body:rentalHouseData,
-          headers: {
-            Authorization: (await cookies()).get("accessToken")!.value,
-          },
-        }
-      );
-      revalidateTag("house");
+      const cookieStore = await cookies(); // Await the cookies
+      const accessToken = cookieStore.get("accessToken")!.value;
+  
+      if (!accessToken) {
+        throw new Error("Access token not found");
+      }
+  
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/product/`, {
+        method: "GET", // Correct capitalization
+        headers: {
+          Authorization: accessToken,
+        },
+      });
+  
+      if (!res.ok) {
+        throw new Error(`Failed to fetch data: ${res.statusText}`);
+      }
+  
       return res.json();
     } catch (error: any) {
-      return Error(error);
+      console.error("Error fetching landlord rental houses:", error);
+      return { success: false, message: error.message };
     }
   };
+  
 
   // update rental house 
 //   export const updateRentalHouse = async (
