@@ -162,15 +162,15 @@ const navMenus: Record<
     },
     {
       title: "Manage Rentals House",
-      url: "/landlord/dashboard/postRentalHouse",
+      url: "/landlord/dashboard/allRentalHousrLanload",
       icon: Map,
       items: [
         {
-          title: "Post Rental House t",
+          title: "Post Rental House ",
           url: "/landlord/dashboard/postRentalHouse",
         },
         {
-          title: "Manage Rent Requests",
+          title: "Rental House ",
           url: "/user/shop/category",
         },
         {

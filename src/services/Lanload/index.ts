@@ -19,6 +19,10 @@
 //       return Error(error.message);
 //     }
 //   };
+
+import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
+
   
 //   // get single product
 //   export const getSingleProduct = async (productId: string) => {
@@ -56,6 +60,29 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
     }
   };
   
+  // update rental house 
+  export const LanloadGetWonRentalHouse = async (
+    rentalHouseData: FormData,
+    houseId: string
+  ): Promise<any> => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}/product/${houseId}`,
+        {
+          method: "PATCH",
+          body:rentalHouseData,
+          headers: {
+            Authorization: (await cookies()).get("accessToken")!.value,
+          },
+        }
+      );
+      revalidateTag("house");
+      return res.json();
+    } catch (error: any) {
+      return Error(error);
+    }
+  };
+
   // update rental house 
 //   export const updateRentalHouse = async (
 //     rentalHouseData: FormData,
