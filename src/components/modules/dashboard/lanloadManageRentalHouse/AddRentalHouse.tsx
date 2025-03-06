@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,24 +10,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  FieldValues,
-  SubmitHandler,
-
-  useForm,
-} from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
-import {  useState } from "react";
+import { useState } from "react";
 import NMImageUploader from "@/components/ui/core/NMImageUploader";
 import ImagePreviewer from "@/components/ui/core/NMImageUploader/ImagePreviewer";
-
 import Logo from "@/assets/svgs/Logo";
-
-
-
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { addRentalHouse } from "@/services/Lanload";
+import { useUser } from "@/context/UserContext";
 
 // Cloudinary Credentials
 const CLOUD_NAME = "dy0b6hvog"; // cloudinary cloud khola ache my gm -personal
@@ -37,169 +28,71 @@ const UPLOAD_PRESET = "bikeshop";
 export default function AddRentalHouseForm() {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
+  const { user } = useUser();
+  console.log("iam crunt user ", user);
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const form = useForm({
     defaultValues: {
-    location: "",
+      location: "",
       description: "",
       rentAmount: 0,
-        bedrooms: 0,
+      bedrooms: 0,
     },
   });
 
-  const { formState: { isSubmitting }, } = form;
-
+  const {
+    formState: { isSubmitting },
+  } = form;
 
   // console.log(specFields);
 
-
-
-//   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-
-//     // console.log({ availableColors, keyFeatures, specification });
-
-//     const modifiedData = {
-//       ...data,
-//       rentAmount: parseFloat(data.rentAmount),
-//       bedrooms: parseInt(data.bedrooms),
-//     //   price: parseFloat(data.price),
-    
-//     };
-//     console.log(data);
-//     const formData = new FormData();
-//     formData.append("data", JSON.stringify(modifiedData));
-
-//     for (const file of imageFiles) {
-//       formData.append("images", file);
-//     }
-//     try {
-//       const res = await addProduct(formData);
-
-//       if (res.success) {
-//         toast.success(res.message);
-//         router.push("/user/shop/products");
-//       } else {
-//         toast.error(res.message);
-//       }
-//     } catch (err: any) {
-//       console.error(err);
-//     }
-//     console.log(data);
-//     console.log('ami moodify ',modifiedData);
-//   };
-// ------------------------------test with upload image--------------------------------
-
-// const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-//     if (imageFiles.length === 0) {
-//       toast.error("Please upload at least one image.");
-//       return;
-//     }
-  
-//     const uploadPreset = UPLOAD_PRESET; // Replace with your Cloudinary upload preset
-//     const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`; // Replace with your Cloudinary cloud name
-  
-//     try {
-//       // Upload all images to Cloudinary
-//       const imageUploadPromises = imageFiles.map(async (file) => {
-//         const formData = new FormData();
-//         formData.append("file", file);
-//         formData.append("upload_preset", uploadPreset);
-  
-//         const res = await fetch(cloudinaryUrl, {
-//           method: "POST",
-//           body: formData,
-//         });
-  
-//         const result = await res.json();
-//         return result.secure_url; // get  uploaded imag URL as a array
-//       });
-  
-//       const imageUrls = await Promise.all(imageUploadPromises); // Wait for all uploads to finish
-  
-//       const modifiedData = {
-//         ...data,
-//         rentAmount: parseFloat(data.rentAmount),
-//         bedrooms: parseInt(data.bedrooms),
-//         images: imageUrls, // Add uploaded image URLs
-//         landlordId: "67c6d455b218e6a5fbbf5214", // Example ID, replace with actual data
-//       };
-  
-//       console.log("Final Data to Send:", modifiedData);
-  
-//       // Send the data to the backend
-//       try {
-//         const formData = new FormData();
-//         formData.append('data', JSON.stringify(modifiedData));
-//         const filalData = formData;
-//         const res = await addRentalHouse(filalData);
-//         console.log(modifiedData);
-//         console.log(formData);
-//         console.log( filalData);
-  
-//         if (res.success) {
-//           toast.success(res.message);
-//           router.push("/user/landlord/rental-houses");
-//         } else {
-//           toast.error(res.message);
-//         }
-//       } catch (err: any) {
-//         console.error(err);
-//         toast.error("Something went wrong while sending data.");
-//       }
-//     } catch (err: any) {
-//       console.error("Image Upload Error:", err);
-//       toast.error("Failed to upload images.");
-//     }
-    
-//   };
-  
-
-
-const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (imageFiles.length === 0) {
       toast.error("Please upload at least one image.");
       return;
     }
-  
+
     const uploadPreset = UPLOAD_PRESET; // Replace with your Cloudinary upload preset
     const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`; // Replace with your Cloudinary cloud name
-  
+
     try {
       // Upload all images to Cloudinary
       const imageUploadPromises = imageFiles.map(async (file) => {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", uploadPreset);
-  
+
         const res = await fetch(cloudinaryUrl, {
           method: "POST",
           body: formData,
         });
-  
+
         const result = await res.json();
         return result.secure_url; // Get the uploaded image URL as an array
       });
-  
+
       const imageUrls = await Promise.all(imageUploadPromises); // Wait for all uploads to finish
-  
+
       const modifiedData = {
         ...data,
         rentAmount: parseFloat(data.rentAmount),
         bedrooms: parseInt(data.bedrooms),
         images: imageUrls, // Add uploaded image URLs
-        landlordId: "67c6d455b218e6a5fbbf5214", // Example ID, replace with actual data
+        landlordId: user?.userId, // Example ID, replace with actual data
       };
-  
-      console.log("Final Data to Send:", modifiedData);
-  
+
+      console.log("final data send in the backend:", modifiedData);
+
       // Send the data to the backend as a JSON object
       const res = await addRentalHouse(modifiedData); // Send modifiedData directly as JSON
-  
+
       if (res.success) {
         toast.success(res.message);
-        router.push("/user/landlord/rental-houses");
+        form.reset(); // Reset the form after successful submission
+        setImageFiles([]);
+        // router.push("/user/landlord/rental-houses");
       } else {
         toast.error(res.message);
       }
@@ -208,8 +101,7 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
       toast.error("Failed to upload images.");
     }
   };
-  
-  
+
   return (
     <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-2xl p-5 ">
       <div className="flex items-center space-x-4 mb-5 ">
@@ -236,7 +128,7 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                 </FormItem>
               )}
             />
-             <FormField
+            <FormField
               control={form.control}
               name="rentAmount"
               render={({ field }) => (
@@ -249,9 +141,8 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                 </FormItem>
               )}
             />
-            </div >
-           <div className="grid grid-cols-1 my-2 gap-4 md:grid-cols-2">
-          
+          </div>
+          <div className="grid grid-cols-1 my-2 gap-4 md:grid-cols-2">
             <FormField
               control={form.control}
               name="bedrooms"
@@ -265,8 +156,7 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                 </FormItem>
               )}
             />
-           </div>
- 
+          </div>
 
           <div className="my-5">
             <FormField
@@ -307,10 +197,9 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
               />
             </div>
           </div>
-        
 
           <Button type="submit" className="mt-5 w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Adding Product....." : "Add Product"}
+            {isSubmitting ? "Adding Rental house....." : "Rental house"}
           </Button>
         </form>
       </Form>
