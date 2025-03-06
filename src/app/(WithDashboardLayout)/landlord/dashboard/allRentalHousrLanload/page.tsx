@@ -1,9 +1,12 @@
-import React from 'react';
+import LanloadAllRentalHouse from "@/components/modules/dashboard/lanloadManageRentalHouse/LanloadAllRentalHouse";
+
+
 
 const AllRentalHouseLanloadPage = () => {
+ 
     return (
         <div>
-            this is all rental house lanload page
+           <LanloadAllRentalHouse/>
         </div>
     );
 };

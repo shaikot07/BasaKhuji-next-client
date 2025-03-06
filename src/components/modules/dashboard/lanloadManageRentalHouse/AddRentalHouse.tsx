@@ -37,6 +37,8 @@ export default function AddRentalHouseForm() {
     defaultValues: {
       location: "",
       description: "",
+      bath:0,
+      amenities: "",
       rentAmount: 0,
       bedrooms: 0,
     },
@@ -148,7 +150,33 @@ export default function AddRentalHouseForm() {
               name="bedrooms"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Number of bedrooms</FormLabel>
+                  <FormLabel>Number of Bedroom</FormLabel>
+                  <FormControl>
+                    <Input {...field} value={field.value || ""} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="bath"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Number of Bath room</FormLabel>
+                  <FormControl>
+                    <Input {...field} value={field.value || ""} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="amenities"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Amenities</FormLabel>
                   <FormControl>
                     <Input {...field} value={field.value || ""} />
                   </FormControl>
