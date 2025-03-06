@@ -1,5 +1,6 @@
-
-
+"use server";
+import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
 
 
 // // get all products
@@ -20,8 +21,7 @@
 //     }
 //   };
 
-import { revalidateTag } from "next/cache";
-import { cookies } from "next/headers";
+
 
   
 //   // get single product
