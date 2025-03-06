@@ -1,4 +1,4 @@
-export default function UserDashboard() {
+export default function LanloadDashboard() {
   return (
     <div>
       <h1>this is lanload deshboard</h1>

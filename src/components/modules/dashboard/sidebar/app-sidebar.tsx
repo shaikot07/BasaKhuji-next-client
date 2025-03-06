@@ -161,13 +161,13 @@ const navMenus: Record<
       isActive: true,
     },
     {
-      title: "Manage Properties",
-      url: "/landlord/properties",
+      title: "Manage Rentals House",
+      url: "/landlord/dashboard/postRentalHouse",
       icon: Map,
       items: [
         {
-          title: "Properties",
-          url: "/admin/users",
+          title: "Post Rental House t",
+          url: "/landlord/dashboard/postRentalHouse",
         },
         {
           title: "Manage Rent Requests",
