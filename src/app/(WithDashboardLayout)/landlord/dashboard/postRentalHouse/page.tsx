@@ -1,9 +1,10 @@
+import AddRentalHouseForm from '@/components/modules/dashboard/lanloadManageRentalHouse/AddRentalHouse';
 import React from 'react';
 
 const PostRentalHousePage = () => {
     return (
-        <div>
-            this is the post rental house page
+        <div className="flex items-center justify-center">
+            <AddRentalHouseForm />
         </div>
     );
 };
