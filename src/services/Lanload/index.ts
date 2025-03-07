@@ -114,7 +114,7 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${houseId}`,
         {
-          method: "PATCH",
+          method: "PUT",
           body: rentalHouseData,
         }
       );

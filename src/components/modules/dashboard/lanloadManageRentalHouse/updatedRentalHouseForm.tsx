@@ -18,8 +18,9 @@ import ImagePreviewer from "@/components/ui/core/NMImageUploader/ImagePreviewer"
 import Logo from "@/assets/svgs/Logo";
 // import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { addRentalHouse } from "@/services/Lanload";
+
 import { useUser } from "@/context/UserContext";
+import { updateRentalHouse } from "@/services/Lanload";
 
 // Cloudinary Credentials
 const CLOUD_NAME = "dy0b6hvog"; // cloudinary cloud khola ache my gm -personal
@@ -91,7 +92,8 @@ const [imagePreview, setImagePreview] = useState<string[] | []>(
       console.log("final data send in the backend:", modifiedData);
 
       // Send the data to the backend as a JSON object
-      const res = await addRentalHouse(modifiedData); // Send modifiedData directly as JSON
+      // const res = await  UpdatedRentalHouseForm(modifiedData,rentalHouse._id); 
+      const res = await updateRentalHouse(modifiedData, rentalHouse._id);
 
       if (res.success) {
         toast.success(res.message);
@@ -112,7 +114,7 @@ const [imagePreview, setImagePreview] = useState<string[] | []>(
       <div className="flex items-center space-x-4 mb-5 ">
         <Logo />
 
-        <h1 className="text-xl font-bold">Add New Rental House</h1>
+        <h1 className="text-xl font-bold">Updated Rental House Info </h1>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
