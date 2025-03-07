@@ -24,24 +24,24 @@ import { cookies } from "next/headers";
 
 
   
-//   // get single product
-//   export const getSingleProduct = async (productId: string) => {
-//     try {
-//       const res = await fetch(
-//         `${process.env.NEXT_PUBLIC_BASE_API}/product/${productId}`,
-//         {
-//           next: {
-//             tags: ["house"],
-//           },
-//         }
-//       );
-//       const data = await res.json();
-//       return data;
-//     } catch (error: any) {
-//       return Error(error.message);
-//     }
-//   };
-  
+  // get single house By is for updated 
+  // export const getSingleProduct = async (productId: string) => {
+  //   try {
+  //     const res = await fetch(
+  //       `${process.env.NEXT_PUBLIC_BASE_API}/product/${productId}`,
+  //       {
+  //         next: {
+  //           tags: ["house"],
+  //         },
+  //       }
+  //     );
+  //     const data = await res.json();
+  //     return data;
+  //   } catch (error: any) {
+  //     return Error(error.message);
+  //   }
+  // };
+
 // add rental house 
 export const addRentalHouse = async (modifiedData: any): Promise<any> => {
     try {
@@ -70,7 +70,7 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
         throw new Error("Access token not found");
       }
   
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/won/${id}`, {
         method: "GET", // Correct capitalization
         headers: {
           Authorization: `Bearer ${accessToken}`, // Add "Bearer" if required
@@ -87,6 +87,24 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
       console.error("Error fetching landlord rental houses:", error);
       return { success: false, message: error.message };
     }
+  };
+  
+  // get single rental house
+  export const getSingleRentalHouse = async (houseIdId: string) => {
+    try {
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${houseIdId}`,
+            {
+              next: {
+                tags: ["house"],
+              },
+            }
+          );
+          const data = await res.json();
+          return data;
+        } catch (error: any) {
+          return Error(error.message);
+        }
   };
   
 
