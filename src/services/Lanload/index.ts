@@ -76,6 +76,9 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
           Authorization: `Bearer ${accessToken}`, // Add "Bearer" if required
           "Content-Type": "application/json",
         },
+        next: { 
+          tags: ["HOUSE"], // Add the "house" tag here
+        },
       });
   
       if (!res.ok) {
@@ -96,7 +99,7 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
             `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${houseIdId}`,
             {
               next: { 
-                tags: ["house"],
+                tags: ["HOUSE"], // Add tags for revalidation
               },
             }
           );
@@ -121,10 +124,30 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
           body: JSON.stringify(rentalHouseData),
         }
       );
-      revalidateTag("house");
+      revalidateTag("HOUSE");
       return res.json();
     } catch (error: any) {
       return new Error(error);
+    }
+  };
+  
+  // deleted rental house
+  export const deleteRentalHouse = async (id: string): Promise<any> => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${id}`,
+        {
+          method: "DELETE",  // Change the method to DELETE
+          headers: {
+            "Content-Type": "application/json", // Ensure JSON format
+          },
+        }
+      );
+  
+      revalidateTag("HOUSE"); // Revalidate or refresh the list of houses
+      return res.json(); // Return the response from the API
+    } catch (error: any) {
+      return new Error(error); // Return error if there's any issue
     }
   };
   

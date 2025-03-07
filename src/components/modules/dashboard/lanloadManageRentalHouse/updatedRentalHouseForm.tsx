@@ -238,7 +238,7 @@ const [imagePreview, setImagePreview] = useState<string[] | []>(
           </div>
 
           <Button type="submit" className="mt-5 w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Adding Rental house....." : "Rental house"}
+            {isSubmitting ? "updated Rental house....." : "Updated Rental house"}
           </Button>
         </form>
       </Form>

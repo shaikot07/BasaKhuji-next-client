@@ -1,10 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/context/UserContext";
-import { LanloadGetWonRentalHouse } from "@/services/Lanload";
+import { deleteRentalHouse, LanloadGetWonRentalHouse } from "@/services/Lanload";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const LanloadAllRentalHouse = () => {
   const { user } = useUser();
@@ -35,6 +36,27 @@ const LanloadAllRentalHouse = () => {
     fetchData();
   }, [user?.userId]); // Fetch data when userId changes
 
+  // deleted house
+
+
+  const handleDelete = async (id: string) => {
+    try {
+      const res = await deleteRentalHouse(id);
+  
+      if (res.success) {
+        toast.success("Rental house deleted successfully");
+        // Optionally, redirect or update UI after delete
+        // router.push("/user/landlord/rental-houses"); // Or refresh the list
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err) {
+      console.error("Error deleting rental house:", err);
+      toast.error("Failed to delete rental house.");
+    }
+  };
+
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   console.log(data);
@@ -64,7 +86,7 @@ const LanloadAllRentalHouse = () => {
                     href="#"
                     className="text-lg hover:text-[#151515] font-medium duration-500 ease-in-out"
                   >
-                    238 Baton Rouge, LA 70809, USA
+                    {item.location}
                   </a>
                 </div>
 
@@ -118,13 +140,15 @@ const LanloadAllRentalHouse = () => {
 
                 <ul className="m-0 flex list-none items-center justify-between px-0 pt-6 pb-0">
                   <li className="text-left">
-                   <Button>Deleted</Button>
+                   <Button
+                   onClick={() => handleDelete(item._id)}
+                   >Deleted</Button>
                   </li>
 
                   <li className="text-left">
                     <Link href={`/landlord/dashboard/updatedRentalHouse/${item._id}`}>
                     
-                  <Button>Edited</Button>
+                  <Button>Edit</Button>
                     </Link>
                   </li>
                 </ul>
