@@ -104,8 +104,8 @@ const [imagePreview, setImagePreview] = useState<string[] | []>(
         toast.error(res.message);
       }
     } catch (err: any) {
-      console.error("Image Upload Error:", err);
-      toast.error("Failed to upload images.");
+      console.error("image upload Error:", err);
+      toast.error("failed to upload images.");
     }
   };
 
