@@ -95,7 +95,7 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
           const res = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${houseIdId}`,
             {
-              next: {
+              next: { 
                 tags: ["house"],
               },
             }
@@ -109,24 +109,18 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
   
 
   // update rental house 
-//   export const updateRentalHouse = async (
-//     rentalHouseData: FormData,
-//     houseId: string
-//   ): Promise<any> => {
-//     try {
-//       const res = await fetch(
-//         `${process.env.NEXT_PUBLIC_BASE_API}/product/${houseId}`,
-//         {
-//           method: "PATCH",
-//           body:rentalHouseData,
-//           headers: {
-//             Authorization: (await cookies()).get("accessToken")!.value,
-//           },
-//         }
-//       );
-//       revalidateTag("house");
-//       return res.json();
-//     } catch (error: any) {
-//       return Error(error);
-//     }
-//   };
+  export const updateRentalHouse = async (rentalHouseData: any, houseId: string): Promise<any> => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${houseId}`,
+        {
+          method: "PATCH",
+          body: rentalHouseData,
+        }
+      );
+      revalidateTag("house");
+      return res.json();
+    } catch (error: any) {
+      return Error(error);
+    }
+  };
