@@ -16,7 +16,7 @@ import { useState } from "react";
 import NMImageUploader from "@/components/ui/core/NMImageUploader";
 import ImagePreviewer from "@/components/ui/core/NMImageUploader/ImagePreviewer";
 import Logo from "@/assets/svgs/Logo";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { useUser } from "@/context/UserContext";
@@ -35,7 +35,7 @@ const [imagePreview, setImagePreview] = useState<string[] | []>(
   const { user } = useUser();
   console.log("iam crunt user ", user);
 
-  // const router = useRouter();
+  const router = useRouter();
 
   const form = useForm({
     defaultValues: {
@@ -54,61 +54,67 @@ const [imagePreview, setImagePreview] = useState<string[] | []>(
 
   // console.log(specFields);
 
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    if (imageFiles.length === 0) {
-      toast.error("Please upload at least one image.");
-      return;
-    }
-
-    const uploadPreset = UPLOAD_PRESET; // Replace with your Cloudinary upload preset
-    const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`; // Replace with your Cloudinary cloud name
-
-    try {
-      // Upload all images to Cloudinary
-      const imageUploadPromises = imageFiles.map(async (file) => {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", uploadPreset);
-
-        const res = await fetch(cloudinaryUrl, {
-          method: "POST",
-          body: formData,
+    let imageUrls = imagePreview; // Default to existing images
+  
+    if (imageFiles.length > 0) {
+      // Upload new images if user added them
+      const uploadPreset = UPLOAD_PRESET;
+      const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+  
+      try {
+        const imageUploadPromises = imageFiles.map(async (file) => {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("upload_preset", uploadPreset);
+  
+          const res = await fetch(cloudinaryUrl, {
+            method: "POST",
+            body: formData,
+          });
+  
+          const result = await res.json();
+          return result.secure_url; // Get uploaded image URL
         });
-
-        const result = await res.json();
-        return result.secure_url; // Get the uploaded image URL as an array
-      });
-
-      const imageUrls = await Promise.all(imageUploadPromises); // Wait for all uploads to finish
-
-      const modifiedData = {
-        ...data,
-        rentAmount: parseFloat(data.rentAmount),
-        bedrooms: parseInt(data.bedrooms),
-        images: imageUrls, // Add uploaded image URLs
-        landlordId: user?.userId, // Example ID, replace with actual data
-      };
-
-      console.log("final data send in the backend:", modifiedData);
-
-      // Send the data to the backend as a JSON object
-      // const res = await  UpdatedRentalHouseForm(modifiedData,rentalHouse._id); 
+  
+        imageUrls = await Promise.all(imageUploadPromises); // Update images array
+      } catch (err: any) {
+        console.error("Image Upload Error:", err);
+        toast.error("Failed to upload images.");
+        return;
+      }
+    }
+  
+    // Prepare final data to send
+    const modifiedData = {
+      ...data,
+      rentAmount: parseFloat(data.rentAmount),
+      bedrooms: parseInt(data.bedrooms),
+      images: imageUrls, // Use existing or uploaded images
+      landlordId: user?.userId,
+    };
+  
+    console.log("Final updated data sent to backend:", modifiedData);
+  
+    // Send updated rental house data
+    try {
       const res = await updateRentalHouse(modifiedData, rentalHouse._id);
-
+      
       if (res.success) {
         toast.success(res.message);
-        form.reset(); // Reset the form after successful submission
+        form.reset(); 
         setImageFiles([]);
-        // router.push("/user/landlord/rental-houses");
+        router.push("/landlord/dashboard/allRentalHousrLanload");
       } else {
         toast.error(res.message);
       }
-    } catch (err: any) {
-      console.error("image upload Error:", err);
-      toast.error("failed to upload images.");
+    } catch (err) {
+      console.error("Update Rental House Error:", err);
+      toast.error("Failed to update rental house.");
     }
   };
-
+  
   return (
     <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-2xl p-5 ">
       <div className="flex items-center space-x-4 mb-5 ">

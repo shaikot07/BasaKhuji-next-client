@@ -115,12 +115,16 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
         `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${houseId}`,
         {
           method: "PUT",
-          body: rentalHouseData,
+          headers: {
+            "Content-Type": "application/json", // Ensure JSON format
+          },
+          body: JSON.stringify(rentalHouseData),
         }
       );
       revalidateTag("house");
       return res.json();
     } catch (error: any) {
-      return Error(error);
+      return new Error(error);
     }
   };
+  
