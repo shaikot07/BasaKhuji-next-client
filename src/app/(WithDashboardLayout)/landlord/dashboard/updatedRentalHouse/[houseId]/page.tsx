@@ -1,3 +1,4 @@
+import UpdatedRentalHouseForm from "@/components/modules/dashboard/lanloadManageRentalHouse/updatedRentalHouseForm";
 import { getSingleRentalHouse } from "@/services/Lanload";
 
 
@@ -8,9 +9,8 @@ const UpdatedRentalHousePage =async ({ params}: {params: Promise<{ houseId: stri
     console.log( "this is" ,rentalHouse);
 
     return (
-        <div>
-            ths is updated page by id 
-            <h2>this is is {houseId}</h2>
+        <div className="flex justify-center items-center">
+            <UpdatedRentalHouseForm rentalHouse={rentalHouse} />
           
         </div>
     );

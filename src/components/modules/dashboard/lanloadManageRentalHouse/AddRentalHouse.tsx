@@ -37,8 +37,8 @@ export default function AddRentalHouseForm() {
     defaultValues: {
       location: "",
       description: "",
-      bath:0,
       amenities: "",
+      bath:0,
       rentAmount: 0,
       bedrooms: 0,
     },
