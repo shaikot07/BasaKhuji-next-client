@@ -170,8 +170,8 @@ const navMenus: Record<
           url: "/landlord/dashboard/postRentalHouse",
         },
         {
-          title: "Rental House ",
-          url: "/user/shop/category",
+          title: "Manage Rental Request",
+          url: "/landlord/dashboard/rentalRequest",
         },
         {
           title: "Manage Brands",
