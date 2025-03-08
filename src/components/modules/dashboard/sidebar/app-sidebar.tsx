@@ -3,7 +3,7 @@
 import * as React from "react";
 import {
   Bot,
-  Frame,
+
   LifeBuoy,
   Map,
   PieChart,
@@ -179,16 +179,16 @@ const navMenus: Record<
         },
       ],
     },
-    {
-      title: "Tenants",
-      url: "/landlord/tenants",
-      icon: Frame,
-    },
-    {
-      title: "agdums",
-      url: "/landlord/tenants",
-      icon: Frame,
-    },
+    // {
+    //   title: "Tenants",
+    //   url: "/landlord/tenants",
+    //   icon: Frame,
+    // },
+    // {
+    //   title: "agdums",
+    //   url: "/landlord/tenants",
+    //   icon: Frame,
+    // },
     {
       title: "Settings",
       url: "/landlord/settings",
@@ -196,6 +196,10 @@ const navMenus: Record<
       items: [
         {
           title: "Profile",
+          url: "/profile",
+        },
+        {
+          title: "Password Change",
           url: "/profile",
         },
       ],
@@ -208,17 +212,20 @@ const navMenus: Record<
       url: "/tenant/dashboard",
       icon: SquareTerminal,
       isActive: true,
+      items: [
+        {
+          title: "My Rent",
+          url: "/tenant/dashboard/myRequest",
+         
+        },
+        {
+          title: "Support",
+          url: "/tenant/support",
+         
+        },
+      ],
     },
-    {
-      title: "My Rent",
-      url: "/tenant/rent",
-      icon: PieChart,
-    },
-    {
-      title: "Support",
-      url: "/tenant/support",
-      icon: LifeBuoy,
-    },
+   
     {
       title: "Settings",
       url: "/tenant/settings",
