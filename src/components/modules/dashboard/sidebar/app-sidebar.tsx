@@ -125,14 +125,14 @@ const navMenus: Record<
           title: "Manage users",
           url: "/admin/users",
         },
-        {
-          title: "Manage Categories",
-          url: "/user/shop/category",
-        },
-        {
-          title: "Manage Brands",
-          url: "/user/shop/brand",
-        },
+        // {
+        //   title: "Manage Categories",
+        //   url: "/user/shop/category",
+        // },
+        // {
+        //   title: "Manage Brands",
+        //   url: "/user/shop/brand",
+        // },
       ],
     },
     {
@@ -218,11 +218,11 @@ const navMenus: Record<
           url: "/tenant/dashboard/myRequest",
          
         },
-        {
-          title: "Support",
-          url: "/tenant/support",
+        // {
+        //   title: "Support",
+        //   url: "/tenant/support",
          
-        },
+        // },
       ],
     },
    

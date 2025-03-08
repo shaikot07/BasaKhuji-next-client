@@ -1,41 +1,23 @@
 "use server";
-import { cookies } from "next/headers";
 
 
 // get all rental house by lanload spacefice
 
-export const getAllRentalRequest = async () => {
-  try {
-    const cookieStore = await cookies(); // Await the cookies
-    const accessToken = cookieStore.get("accessToken")!.value; // Use optional chaining
-
-    if (!accessToken) {
-      throw new Error("Access token not found");
+export const getRequestTentSpecific = async (tenantId: string) => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}/tenants/requests/${tenantId}`,
+        {
+          next: {
+            tags: ["REQUEST"], // Add tags for revalidation
+          },
+        }
+      );
+      const data = await res.json();
+      return data;
+    } catch (error: any) {
+      return Error(error.message);
     }
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/landlords/requests`,
-      {
-        method: "GET", // Correct capitalization
-        headers: {
-          Authorization: `Bearer ${accessToken}`, // Add "Bearer" if required
-          "Content-Type": "application/json",
-        },
-        next: {
-          tags: ["REQUEST"], // Add the "house" tag here
-        },
-      }
-    );
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch data: ${res.statusText}`);
-    }
-
-    return await res.json();
-  } catch (error: any) {
-    console.error("Error fetching landlord rental houses:", error);
-    return { success: false, message: error.message };
-  }
-};
+  };
 
 
