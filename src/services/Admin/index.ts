@@ -71,7 +71,7 @@ export const blockUser = async (
 };
 // admin updated user roll 
 export const updatedRole = async (
-rollData,
+role:any,
   userId: string
 ): Promise<any> => {
   try {
@@ -82,14 +82,14 @@ rollData,
       throw new Error("Access token not found");
     }
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/users/${ userId}/block`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/users/${ userId}/role`,
       {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           Authorization: `Bearer ${accessToken}`, // Add "Bearer" if required
           "Content-Type": "application/json", // Ensure JSON format
         },
-        body: JSON.stringify({ rollData }),
+        body: JSON.stringify({ role }),
       }
     );
     revalidateTag("USER");

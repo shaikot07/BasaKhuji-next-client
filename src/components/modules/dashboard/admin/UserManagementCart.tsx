@@ -4,29 +4,53 @@ import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { TUser } from "@/types";
-import { blockUser } from "@/services/Admin";
+import { blockUser, updatedRole } from "@/services/Admin";
 import { toast } from "sonner";
 
 const UserManagementCart = ({ userData }: { userData: TUser[] }) => {
   const [users, setUsers] = useState(userData); // State to store users
   const [loading, setLoading] = useState<string | null>(null); // Store the user ID being updated
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [selectedUser, setSelectedUser] = useState<TUser | null>(null); // State for the selected user
+  const [newRole, setNewRole] = useState("tenant"); // New role for the selected user
 
   // Handle Block/Unblock Action
   const handleBlockToggle = async (userId: string, isBlocked: boolean) => {
     try {
       await blockUser(userId); // No need to send true/false, backend toggles it
-  
+
       // Update UI
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
           user._id === userId ? { ...user, isBlocked: !isBlocked } : user
         )
       );
-  
-      toast.success(`User ${isBlocked ? 'unblocked' : 'blocked'} successfully!`);
+
+      toast.success(
+        `User ${isBlocked ? "unblocked" : "blocked"} successfully!`
+      );
     } catch (error) {
       console.error("Error:", error);
       toast.error("Failed to update user status.");
+    }
+  };
+
+  // Handle Role Update
+  const handleRoleUpdate = async (userId: string, role: string) => {
+    try {
+      setLoading(userId);
+      console.log(userId,role);
+      // const res = await updatedRole(userId, role);
+
+      if (res.success) {
+        toast.success(res.message);
+        // router.push("/user/landlord/rental-houses");
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err: any) {
+      console.error("Image Upload Error:", err);
+      toast.error(err.message);
     }
   };
 
@@ -125,9 +149,21 @@ const UserManagementCart = ({ userData }: { userData: TUser[] }) => {
                           }
                           disabled={loading === user._id} // Disable button while loading
                         >
-                          {loading === user._id ? "Processing..." : user.isBlocked ? "Unblock" : "Block"}
+                          {loading === user._id
+                            ? "Processing..."
+                            : user.isBlocked
+                            ? "Unblock"
+                            : "Block"}
                         </Button>
-                        <Button>Update Role</Button>
+                        <Button
+                          onClick={() => {
+                            setSelectedUser(user);
+                            setNewRole(user.role);
+                            setIsModalOpen(true);
+                          }}
+                        >
+                          Update Role
+                        </Button>
                       </td>
                     </tr>
                   ))}
@@ -137,6 +173,44 @@ const UserManagementCart = ({ userData }: { userData: TUser[] }) => {
           </div>
         </div>
       </div>
+      {/* Modal for Updating Role */}
+      {isModalOpen && selectedUser && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h3 className="text-lg font-semibold mb-4">
+              Update Role for {selectedUser.name}
+            </h3>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">
+                Role
+              </label>
+              <select
+                value={newRole}
+                onChange={(e) => setNewRole(e.target.value)}
+                className="mt-1 block w-full border border-gray-300 rounded-md"
+              >
+                <option value="tenant">Tenant</option>
+                <option value="admin">Admin</option>
+                <option value=" landlord"> landlord</option>
+              </select>
+            </div>
+            <div className="flex justify-end">
+              <Button onClick={() => setIsModalOpen(false)} className="mr-2">
+                Cancel
+              </Button>
+              <Button
+                onClick={() => {
+                  handleRoleUpdate(selectedUser._id, newRole);
+                  setIsModalOpen(false);
+                }}
+                className="bg-blue-500 text-white"
+              >
+                Update
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
