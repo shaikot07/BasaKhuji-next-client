@@ -1,46 +1,83 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { updateRentalRequest } from "@/services/Lanload";
 import { Request } from "@/types";
 import { useState } from "react";
+import { toast } from "sonner";
 
 // Make sure to accept an array of Request objects
 const RequestManagement = ({ request }: { request: Request[] }) => {
   console.log("component request", request);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [selectedRequestId, setSelectedRequestId] = useState<string | null>(null);
 
   // Handle opening the modal
-  const handleOpenModal = () => {
+  const handleOpenModal = (requestId: string) => {
+    setSelectedRequestId(requestId);
     setIsModalOpen(true);
   };
 
-  // Handle closing the modal
+  // Close modal & reset input
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setPhoneNumber(""); // Reset input field
+    setPhoneNumber("");
+    setSelectedRequestId(null);
   };
 
-  // Handle form submission
-  const handleSubmit = () => {
-    console.log("Landlord Phone Number:", phoneNumber);
-    // You can add API logic here to save the phone number
-    handleCloseModal();
-  };
+  // Submit form with requestId & phoneNumber
+  const handleSubmit = async () => {
+    if (!selectedRequestId) return;
 
+    console.log("Submitting Request:", {
+      requestId: selectedRequestId,
+      phoneNumber: phoneNumber,
+    });
+    const rentalRequestData={ phoneNumber, status: "approved" };
+    try {
+      const res = await  updateRentalRequest(rentalRequestData, selectedRequestId);
+      
+      if (res.success) {
+        toast.success(res.message);
+        handleCloseModal(); 
+        
+        // router.push("/landlord/dashboard/allRentalHousrLanload");
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err) {
+      console.error("Update Rental House Error:", err);
+      toast.error("Failed to update rental house.");
+    }
+
+  }
+  const handleSubmitReject= async () => {
+    if (!selectedRequestId) return;
+
+    console.log("Submitting Request for reject:", {
+      requestId: selectedRequestId,
+      
+    });
+    const rentalRequestData={  status: "rejected" };
+    try {
+      const res = await  updateRentalRequest(rentalRequestData, selectedRequestId);
+      
+      if (res.success) {
+        toast.success(res.message);
+        handleCloseModal(); 
+        
+        // router.push("/landlord/dashboard/allRentalHousrLanload");
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err) {
+      console.error("Update Rental House Error:", err);
+      toast.error("Failed to update rental house.");
+    }
+  }
   return (
-    // <div>
-    //   <h2>Request List</h2>
-    //   {request.map((req) => (
-    //     <div key={req._id}>
-    //       {/* Render request data here */}
-    //       <h3>Request ID: {req._id}</h3>
-    //       <p>Additional Message: {req.additionalMessage}</p>
-    //       <p>Status: {req.status}</p>
-    //       {/* Add more details as needed */}
-    //     </div>
-    //   ))}
-    // </div>
+
 
     <>
       <div className="bg-white p-8 rounded-md w-full">
@@ -100,7 +137,7 @@ const RequestManagement = ({ request }: { request: Request[] }) => {
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <span
                         onClick={
-                          req.status === "pending" ? (e) => handleOpenModal() : undefined
+                          req.status === "pending" ? () => handleOpenModal(req._id) : undefined
                         } // Open modal on click if pending
                         className={`relative inline-block px-3 py-1 font-semibold leading-tight cursor-pointer ${
                           req.status === "approved"
@@ -135,25 +172,21 @@ const RequestManagement = ({ request }: { request: Request[] }) => {
                   <h2 className="text-lg font-semibold mb-4">
                     Enter Landlord Phone Number
                   </h2>
+                  <p className="text-sm text-gray-500 mb-2">Request ID: {selectedRequestId}</p>
                   <input
                     type="text"
-                    placeholder="Enter Phone Number"
+                    placeholder="Enter Phone Number only for approved request"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     className="w-full p-2 border rounded-md mb-4"
                   />
                   <div className="flex justify-end space-x-4">
-                    <Button
-                      onClick={handleCloseModal}
-                     
-                    >
-                      Cancel
+                  <Button onClick={handleCloseModal} className="bg-red-700">Cancel</Button>
+                    <Button onClick={handleSubmit} >
+                      Approve
                     </Button>
-                    <Button
-                      onClick={handleSubmit}
-                     
-                    >
-                      Approved Request
+                    <Button onClick={handleSubmitReject} >
+                     Reject
                     </Button>
                   </div>
                 </div>

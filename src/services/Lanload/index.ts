@@ -185,7 +185,7 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
   };
 
 
-    // update rental house 
+    // update rental Request
     export const updateRentalRequest = async (rentalRequestData: any, requestId: string): Promise<any> => {
       try {
         const cookieStore = await cookies(); // Await the cookies
@@ -195,7 +195,7 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
           throw new Error("Access token not found");
         }
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${requestId}`,
+          `${process.env.NEXT_PUBLIC_BASE_API}/landlords/requests/${requestId}`,
           {
             method: "PUT",
             headers: {
