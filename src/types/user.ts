@@ -1,10 +1,13 @@
-export interface IUser {
-  userId: string;
+export interface TUser {
   name: string;
   email: string;
-  hasShop?: boolean;
-  isActive?: boolean;
-  role: "user" | "admin";
-  iat?: number;
-  exp?: number;
+  password: string;
+  phone?: string;
+  role: 'admin'| 'landlord' | 'tenant',
+  isBlocked: boolean;
+  isDeleted: boolean;
+  passwordChangedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  profileImg?: string;
 }
