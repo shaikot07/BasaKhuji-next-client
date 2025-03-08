@@ -183,3 +183,31 @@ export const addRentalHouse = async (modifiedData: any): Promise<any> => {
       return { success: false, message: error.message };
     }
   };
+
+
+    // update rental house 
+    export const updateRentalRequest = async (rentalRequestData: any, requestId: string): Promise<any> => {
+      try {
+        const cookieStore = await cookies(); // Await the cookies
+        const accessToken = cookieStore.get("accessToken")!.value; // Use optional chaining
+    
+        if (!accessToken) {
+          throw new Error("Access token not found");
+        }
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${requestId}`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${accessToken}`, // Add "Bearer" if required
+              "Content-Type": "application/json", // Ensure JSON format
+            },
+            body: JSON.stringify(rentalRequestData),
+          }
+        );
+        revalidateTag("REQUEST");
+        return res.json();
+      } catch (error: any) {
+        return new Error(error);
+      }
+    };
