@@ -49,7 +49,7 @@ export default function Navbar() {
               className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
               href={"/allHouse"}
             >
-              All House
+              All Home
             </Link>
           </li>
           <li>
