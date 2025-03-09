@@ -38,18 +38,19 @@ const UserManagementCart = ({ userData }: { userData: TUser[] }) => {
   // Handle Role Update
   const handleRoleUpdate = async (userId: string, role: string) => {
     try {
-      setLoading(userId);
-      console.log(userId,role);
+      // setLoading(userId);
+      console.log('this is test updated roll',userId,role);
       // const res = await updatedRole(userId, role);
-
+      const res = await updatedRole(role, userId);
       if (res.success) {
         toast.success(res.message);
-        // router.push("/user/landlord/rental-houses");
+       
       } else {
         toast.error(res.message);
       }
+        
     } catch (err: any) {
-      console.error("Image Upload Error:", err);
+     console.log(err);
       toast.error(err.message);
     }
   };

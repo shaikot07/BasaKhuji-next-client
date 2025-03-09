@@ -82,9 +82,9 @@ role:any,
       throw new Error("Access token not found");
     }
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/users/${ userId}/role`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/users/${userId}/role`,
       {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           Authorization: `Bearer ${accessToken}`, // Add "Bearer" if required
           "Content-Type": "application/json", // Ensure JSON format
