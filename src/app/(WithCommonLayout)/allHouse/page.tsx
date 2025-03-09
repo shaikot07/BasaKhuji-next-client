@@ -11,7 +11,7 @@ const AllHousePage = async () => {
     <div className="max-w-[1600px] mx-auto px-4">
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 bg-purple-500">
         {allHouseData.map((item: any) => (
-          <Link key={item._id} href={`/house/${item._id}` }>
+          <Link key={item._id} href={`/allHouse/${item._id}` }>
           <div
             
             className="overflow-hidden rounded-xl border bg-white text-gray-700 shadow-md duration-500 ease-in-out hover:shadow-xl w-full"

@@ -22,22 +22,22 @@ export const getAllHouse= async () => {
   };
 
 // get single house By is for updated
-// export const getSingleProduct = async (productId: string) => {
-//   try {
-//     const res = await fetch(
-//       `${process.env.NEXT_PUBLIC_BASE_API}/product/${productId}`,
-//       {
-//         next: {
-//           tags: ["house"],
-//         },
-//       }
-//     );
-//     const data = await res.json();
-//     return data;
-//   } catch (error: any) {
-//     return Error(error.message);
-//   }
-// };
+export const getSingleProduct = async (homeId: string) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${homeId}`,
+      {
+        next: {
+          tags: ["house"],
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    return Error(error.message);
+  }
+};
 
 // add rental house
 export const addRentalHouse = async (modifiedData: any): Promise<any> => {
