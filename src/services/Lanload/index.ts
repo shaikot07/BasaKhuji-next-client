@@ -22,7 +22,7 @@ export const getAllHouse= async () => {
   };
 
 // get single house By is for updated
-export const getSingleProduct = async (homeId: string) => {
+export const getSingleHomeById= async (homeId: string) => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${homeId}`,
