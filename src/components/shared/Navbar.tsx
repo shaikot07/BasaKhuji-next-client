@@ -47,9 +47,9 @@ export default function Navbar() {
           <li>
             <Link
               className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
-              href={"/product"}
+              href={"/allHouse"}
             >
-              All Product
+              All House
             </Link>
           </li>
           <li>
@@ -66,9 +66,9 @@ export default function Navbar() {
           <li>
             <Link
               className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
-              href={"/product"}
+              href={"/allHouse"}
             >
-              All Product
+              All House
             </Link>
           </li>
           <li>

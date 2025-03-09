@@ -3,22 +3,23 @@ import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 // // get all products
-// export const getAllProducts = async (page?: string, limit?: string) => {
-//     try {
-//       const res = await fetch(
-//         `${process.env.NEXT_PUBLIC_BASE_API}/product?limit=${limit}&page=${page}`,
-//         {
-//           next: {
-//             tags: ["house"],
-//           },
-//         }
-//       );
-//       const data = await res.json();
-//       return data;
-//     } catch (error: any) {
-//       return Error(error.message);
-//     }
-//   };
+export const getAllHouse= async () => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings`,
+        // `${process.env.NEXT_PUBLIC_BASE_API}/product?limit=${limit}&page=${page}`,
+        {
+          next: {
+            tags: ["HOUSE"],
+          },
+        }
+      );
+      const data = await res.json();
+      return data;
+    } catch (error: any) {
+      return Error(error.message);
+    }
+  };
 
 // get single house By is for updated
 // export const getSingleProduct = async (productId: string) => {
