@@ -96,8 +96,8 @@ const RequestManagement = ({ request }: { request: Request[] }) => {
                 <tr>
                   {[
                     "Request Id",
-                    "Tenant Id",
-                    "Created At",
+                    "rentalDuration",
+                    "moveInDate",
                     "Status",
                     "Message",
                   ].map((header) => (
@@ -124,12 +124,12 @@ const RequestManagement = ({ request }: { request: Request[] }) => {
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <p className="text-gray-900 whitespace-no-wrap">
-                        {req.tenantId}
+                        {req.rentalDuration}
                       </p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <p className="text-gray-900 whitespace-no-wrap">
-                        {req.createdAt}
+                        {req?.moveInDate}
                       </p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
