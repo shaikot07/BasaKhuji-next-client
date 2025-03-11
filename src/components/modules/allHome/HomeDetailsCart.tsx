@@ -101,7 +101,7 @@ import { useUser } from "@/context/UserContext";
 import { addRentalRequest } from "@/services/Tenant";
 import Image from "next/image";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
 const HomeDetailsCart = ({ homeData }: { homeData: any }) => {
@@ -125,7 +125,7 @@ const HomeDetailsCart = ({ homeData }: { homeData: any }) => {
   // });
 
   // add rental request
-  const onSubmit = async (data) => {
+  const onSubmit:SubmitHandler<FieldValues> = async (data) => {
     if (!homeData?._id) {
       toast.error("Missing home ID");
       return;
