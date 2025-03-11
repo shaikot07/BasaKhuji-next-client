@@ -114,6 +114,23 @@ const HomeDetailsCart = ({ homeData }: { homeData: any }) => {
     additionalMessage: "",
   });
 
+  // add rental request 
+  const handleSubmit = async () => {
+    if (!homeData?._id) {
+      console.error("Missing home ID");
+      return;
+    }
+  
+    const requestData = {
+      homeId: homeData._id,
+      moveInDate: rentalRequest.moveInDate,
+      rentalDuration: rentalRequest.rentalDuration,
+      additionalMessage: rentalRequest.additionalMessage,
+    };
+  
+
+  };
+
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto px-4 py-8">
@@ -171,6 +188,10 @@ const HomeDetailsCart = ({ homeData }: { homeData: any }) => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 className="text-xl font-semibold mb-4">Rental Request</h2>
+               {/* Display House ID */}
+      <p className="text-sm text-gray-600 mb-4">
+        House ID: <span className="font-semibold">{homeData?._id || "N/A"}</span>
+      </p>
             <label className="block mb-2">
               Move-in Date:
               <input
@@ -206,7 +227,7 @@ const HomeDetailsCart = ({ homeData }: { homeData: any }) => {
               <Button className="mr-2" onClick={() => setIsModalOpen(false)}>
                 Cancel
               </Button>
-              <Button onClick={() => console.log(rentalRequest)}>Submit Request</Button>
+              <Button onClick={handleSubmit}>Submit Request</Button>
             </div>
           </div>
         </div>
