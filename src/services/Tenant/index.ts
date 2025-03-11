@@ -20,7 +20,7 @@ export const getRequestTentSpecific = async (tenantId: string) => {
     }
   };
 
-  export const addRentalRequest = async (modifiedData: any): Promise<any> => {
+  export const addRentalRequest = async (requestData: any): Promise<any> => {
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_API}/tenants/requests`,
@@ -29,7 +29,7 @@ export const getRequestTentSpecific = async (tenantId: string) => {
           headers: {
             "Content-Type": "application/json", // Indicate that you're sending JSON
           },
-          body: JSON.stringify(modifiedData), // Send the modifiedData object as JSON
+          body: JSON.stringify(requestData), // Send the modifiedData object as JSON
         }
       );
   
