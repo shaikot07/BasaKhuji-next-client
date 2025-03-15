@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 export const getAllHouse= async () => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings`,
+        `${process.env.NEXT_PUBLIC_BASE_API}/landlords/getAll`,
         // `${process.env.NEXT_PUBLIC_BASE_API}/product?limit=${limit}&page=${page}`,
         {
           next: {
