@@ -97,32 +97,136 @@
 
 "use client";
 
+// import { Button } from "@/components/ui/button";
+// import { Search } from "lucide-react";
+// import { useRouter, usePathname, useSearchParams } from "next/navigation";
+// import React, { useState } from "react";
+
+// const SearchBar = () => {
+//   const router = useRouter();
+//   const pathname = usePathname();
+//   const searchParams = useSearchParams();
+
+//   // State to track user input
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [bedrooms, setBedrooms] = useState("all");
+//   const [sortOption, setSortOption] = useState("all");
+
+//   // Function to update query params
+//   const handleSearchQuery = (query: string, value: string | number) => {
+//     const params = new URLSearchParams(searchParams.toString());
+//     params.set(query, value.toString()); // Update query param
+//     router.push(`${pathname}?${params.toString()}`, { scroll: false });
+//   };
+
+//   return (
+//     <div className="max-w-6xl mx-auto pt-4">
+//       <div className="flex flex-wrap gap-6 justify-between">
+//         {/* Filter Dropdown */}
+//         <div className="relative w-full sm:w-auto">
+//           <select
+//             value={bedrooms}
+//             onChange={(e) => {
+//               setBedrooms(e.target.value);
+//               handleSearchQuery("bedrooms", e.target.value);
+//             }}
+//             className="w-full sm:w-64 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1"
+//           >
+//             <option value="0">Number of bedrooms</option>
+//             <option value="1">1</option>
+//             <option value="2">2</option>
+//             <option value="3">3</option>
+//             <option value="4">4</option>
+//             <option value="5">5</option>
+//           </select>
+//         </div>
+
+//         {/* Sort Dropdown */}
+//         <div className="relative w-full sm:w-auto">
+//           <select
+//             value={sortOption}
+//             onChange={(e) => {
+//               setSortOption(e.target.value);
+//               handleSearchQuery("rentAmount", e.target.value);  // ✅ Fix: Use "rentAmount"
+//             }}
+//             className="w-full sm:w-64 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1"
+//           >
+//             <option value="all">Sort by rent</option>
+//             <option value="asc">Rent: Low to High</option>
+//             <option value="desc">Rent: High to Low</option>
+//           </select>
+//         </div>
+
+//         {/* Search Input */}
+//         <div className="relative w-full sm:w-[420px]">
+//           <input
+//             type="search"
+//             value={searchTerm}
+//             onChange={(e) => setSearchTerm(e.target.value)}
+//             className="w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-sm border border-gray-300"
+//             placeholder="Search By Location"
+//             required
+//           />
+//           <button
+//             type="button"
+//             onClick={() => handleSearchQuery("searchTerm", searchTerm)}
+//             className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-[#080808] rounded-sm border border-[#080808] hover:bg-[#F2355F]"
+//           >
+//             <Search />
+//             <span className="sr-only">Search</span>
+//           </button>
+//         </div>
+//         <Button
+//           onClick={() => {
+//             router.push(`${pathname}`, {
+//               scroll: false,
+//             });
+//           }}
+//         >
+//           Reset
+//         </Button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SearchBar;
+
+// test
+
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
 
 const SearchBar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // State to track user input
+  // State for user inputs
   const [searchTerm, setSearchTerm] = useState("");
   const [bedrooms, setBedrooms] = useState("all");
-  const [sortOption, setSortOption] = useState("all");
+  const [rentAmount, setRentAmount] = useState("all");
 
-  // Function to update query params
+  // Function to update query params and fetch data
   const handleSearchQuery = (query: string, value: string | number) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set(query, value.toString()); // Update query param
+    if (value === "all") {
+      params.delete(query); // Remove param if it's set to "all"
+    } else {
+      params.set(query, value.toString());
+    }
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
     <div className="max-w-6xl mx-auto pt-4">
       <div className="flex flex-wrap gap-6 justify-between">
-        {/* Filter Dropdown */}
+        {/* Bedroom Filter */}
         <div className="relative w-full sm:w-auto">
           <select
             value={bedrooms}
@@ -130,9 +234,9 @@ const SearchBar = () => {
               setBedrooms(e.target.value);
               handleSearchQuery("bedrooms", e.target.value);
             }}
-            className="w-full sm:w-64 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1"
+            className="w-full sm:w-64 px-4 py-2 border rounded-md shadow-sm"
           >
-            <option value="all">Number of bedrooms</option>
+            <option value="all">All Bedrooms</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -141,20 +245,19 @@ const SearchBar = () => {
           </select>
         </div>
 
-        {/* Sort Dropdown */}
+        {/* Rent Filter */}
         <div className="relative w-full sm:w-auto">
           <select
-            value={sortOption}
+            value={rentAmount}
             onChange={(e) => {
-              setSortOption(e.target.value);
-              handleSearchQuery("sort", "rentAmount"); // Sorting by rentAmount
-              handleSearchQuery("order", e.target.value); // asc or desc
+              setRentAmount(e.target.value);
+              handleSearchQuery("rentAmount", e.target.value); // ✅ Fix: Send correct rentAmount
             }}
             className="w-full sm:w-64 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1"
           >
-            <option value="all">Sort by rent</option>
-            <option value="asc">Rent: Low to High</option>
-            <option value="desc">Rent: High to Low</option>
+            <option value="all">Sort By Amount</option>
+            <option value="200">Rent: 200</option>
+            <option value="300">Rent: 300</option>
           </select>
         </div>
 
@@ -166,27 +269,27 @@ const SearchBar = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-sm border border-gray-300"
             placeholder="Search By Location"
-            required
           />
           <button
             type="button"
-            onClick={() => handleSearchQuery("location", searchTerm)}
-            className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-[#080808] rounded-sm border border-[#080808] hover:bg-[#F2355F]"
+            onClick={() => handleSearchQuery("searchTerm", searchTerm)}
+            className="absolute top-0 right-0 p-2.5 text-white bg-[#080808] rounded-sm"
           >
             <Search />
-            <span className="sr-only">Search</span>
           </button>
         </div>
+
+        {/* Reset Button */}
         <Button
           onClick={() => {
-            router.push(`${pathname}`, {
-              scroll: false,
-            });
+            router.push(`${pathname}`, { scroll: false });
           }}
         >
           Reset
         </Button>
       </div>
+
+      {/* Display Loading or Results */}
     </div>
   );
 };

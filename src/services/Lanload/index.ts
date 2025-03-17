@@ -3,10 +3,26 @@ import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 // // get all products
-export const getAllHouse= async () => {
+export const getAllHouse= async (query?: { [key: string]: string | string[] | undefined }) => {
+
+const params=new URLSearchParams();
+console.log(query, 'its check query');
+
+ // Append query parameters
+  // Only add parameters if they are set by the user
+  if (query?.searchTerm) {
+    params.append("searchTerm", query.searchTerm.toString());
+  }
+  if (query?.bedrooms && query.bedrooms !== "all") {
+    params.append("bedrooms", query.bedrooms.toString());
+  }
+  if (query?.rentAmount && query.rentAmount !== "all") {
+    params.append("rentAmount", query.rentAmount.toString());
+  }
+
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API}/landlords/getAll`,
+        `${process.env.NEXT_PUBLIC_BASE_API}/landlords/getAll?${params.toString()}`,
         // `${process.env.NEXT_PUBLIC_BASE_API}/product?limit=${limit}&page=${page}`,
         {
           next: {
@@ -20,21 +36,7 @@ export const getAllHouse= async () => {
       return Error(error.message);
     }
   };
-// export const getAllHouse= async (filters: Record<string, any> = {}) => {
-//     try {
-//       // Convert search parameters to a query string
-//     const queryString = new URLSearchParams(filters).toString();
-    
-//     const res = await fetch(
-//       `${process.env.NEXT_PUBLIC_BASE_API}/landlords/getAll?${queryString}`,
-//       { cache: "no-store" } // Ensure fresh data
-//     );
-//       const data = await res.json();
-//       return data;
-//     } catch (error: any) {
-//       return Error(error.message);
-//     }
-//   };
+
 
 // get single house By is for updated
 export const getSingleHomeById= async (homeId: string) => {

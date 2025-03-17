@@ -10,7 +10,7 @@ type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 const AllHousePage = async ({searchParams,}: {searchParams: SearchParams;}) => {
   const query = await searchParams;
   const allHouse = await getAllHouse(query);
-  
+
   const allHouseData = allHouse?.data || [];
   console.log(allHouseData);
 
@@ -36,8 +36,13 @@ const AllHousePage = async ({searchParams,}: {searchParams: SearchParams;}) => {
 
             <div className="p-4">
               <div className="pb-6">
-                <h3  className="text-lg font-medium duration-500 ease-in-out hover:text-green-600">
-                  238 Baton Rouge, LA 70809, USA
+                <h3  className="text-lg font-bold duration-500 ease-in-out hover:text-green-600">
+                 {item?.location}
+                </h3>
+              </div>
+              <div className="pb-6">
+                <h3  className="text-lg font-medium duration-500 ease-in-out hover:text-green-600 line-clamp-2">
+                 {item?.description}
                 </h3>
               </div>
 
