@@ -1,3 +1,4 @@
+import SearchBar from "@/components/modules/allHome/SearchBar";
 import { getAllHouse } from "@/services/Lanload";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +10,7 @@ const AllHousePage = async () => {
 
   return (
     <div className="max-w-[1600px] mx-auto px-4">
+      <SearchBar/>
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 bg-purple-500">
         {allHouseData.map((item: any) => (
           <Link key={item._id} href={`/allHouse/${item._id}` }>
@@ -65,3 +67,49 @@ const AllHousePage = async () => {
 };
 
 export default AllHousePage;
+
+
+// test new  code 
+
+// import { getAllHouse } from "@/services/Lanload";
+// import Image from "next/image";
+// import Link from "next/link";
+
+// const AllHousePage = async ({ searchParams }: { searchParams: Record<string, string> }) => {
+//   const allHouse = await getAllHouse(searchParams); // Fetch filtered/sorted data from API
+//   const allHouseData = allHouse?.data || [];
+
+//   return (
+//     <div className="max-w-[1600px] mx-auto px-4">
+//       {/* Search and Filter UI */}
+    
+
+//       {/* House Listing */}
+//       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+//         {allHouseData.map((item: any) => (
+//           <Link key={item._id} href={`/allHouse/${item._id}`}>
+//             <div className="overflow-hidden rounded-xl border bg-white shadow-md">
+//               <Image
+//                 src={item.images?.[0] || ""}
+//                 alt="House Image"
+//                 width={300}
+//                 height={250}
+//                 className="w-full h-[250px] object-cover"
+//               />
+//               <div className="p-4">
+//                 <h3 className="text-lg font-medium hover:text-green-600">
+//                   {item.location}
+//                 </h3>
+//                 <p>${item.rentAmount} / month</p>
+//                 <p>{item.bedrooms} Beds</p>
+//                 <p>{item.bath ? `${item.bath} Baths` : "No Bath"}</p>
+//               </div>
+//             </div>
+//           </Link>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AllHousePage;

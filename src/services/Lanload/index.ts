@@ -20,6 +20,21 @@ export const getAllHouse= async () => {
       return Error(error.message);
     }
   };
+// export const getAllHouse= async (filters: Record<string, any> = {}) => {
+//     try {
+//       // Convert search parameters to a query string
+//     const queryString = new URLSearchParams(filters).toString();
+    
+//     const res = await fetch(
+//       `${process.env.NEXT_PUBLIC_BASE_API}/landlords/getAll?${queryString}`,
+//       { cache: "no-store" } // Ensure fresh data
+//     );
+//       const data = await res.json();
+//       return data;
+//     } catch (error: any) {
+//       return Error(error.message);
+//     }
+//   };
 
 // get single house By is for updated
 export const getSingleHomeById= async (homeId: string) => {

@@ -21,6 +21,9 @@ export interface RentalHouse {
     additionalMessage: string;
     createdAt: string;
     updatedAt: string;
+    moveInDate:string;
+    rentalDuration:string;
+
     __v: number;
   }
   

@@ -74,3 +74,8 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+select option:hover {
+  background-color: red !important; /* Background turns red on hover */
+  color: white !important; /* Text turns white for contrast */
+}
