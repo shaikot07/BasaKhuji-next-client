@@ -3,8 +3,14 @@ import { getAllHouse } from "@/services/Lanload";
 import Image from "next/image";
 import Link from "next/link";
 
-const AllHousePage = async () => {
-  const allHouse = await getAllHouse();
+
+
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+
+const AllHousePage = async ({searchParams,}: {searchParams: SearchParams;}) => {
+  const query = await searchParams;
+  const allHouse = await getAllHouse(query);
+  
   const allHouseData = allHouse?.data || [];
   console.log(allHouseData);
 
