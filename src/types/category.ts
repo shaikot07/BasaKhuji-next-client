@@ -7,7 +7,7 @@ export interface ICategory {
   createdBy: string;
   icon: string;
   slug: string;
-  createdAt: string;
+  // createdAt: string;
   updatedAt: string;
   children: ICategory[];
 }
