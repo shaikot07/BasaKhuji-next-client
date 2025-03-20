@@ -95,8 +95,6 @@ export default function LoginForm() {
             )}
           />
 
-          
-
           <Button
             // disabled={isSubmitting}
             type="submit"
@@ -107,9 +105,9 @@ export default function LoginForm() {
         </form>
       </Form>
       <p className="text-sm text-gray-600 text-center my-3">
-        Do not have any account ?
+        Do not have any account? &nbsp; 
         <Link href="/register" className="text-primary">
-          Register
+        <span className="text-blue-600 underline">Register</span> 
         </Link>
       </p>
     </div>

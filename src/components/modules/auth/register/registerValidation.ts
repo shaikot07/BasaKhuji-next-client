@@ -14,4 +14,7 @@ export const registrationSchema = z.object({
   passwordConfirm: z
     .string({ required_error: "Password Confirmation is required" })
     .min(1),
+    role: z.enum(["tenant", "landlord", "admin"], {
+      required_error: "Role is required",
+    }).default("tenant"),
 });
