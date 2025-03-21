@@ -89,7 +89,8 @@ export default function Navbar() {
       <div className="container flex justify-between items-center mx-auto h-16 px-5">
         <Link href="/">
           <h1 className="text-2xl font-black flex items-center">
-            <Logo />Basa Khuji
+            <Logo />
+            Basa Khuji
           </h1>
         </Link>
 
@@ -120,11 +121,14 @@ export default function Navbar() {
 
         {/* Right Icons & User Profile */}
         <nav className="flex gap-2">
+          <Link href="/landlord/dashboard/allRentalHousrLanload">
+            <Button className="rounded-full">Post Rental House</Button>
+          </Link>
           {user?.email ? (
             <>
-              <Link href="/create-shop">
+              {/* <Link href="/create-shop">
                 <Button className="rounded-full">Create Shop</Button>
-              </Link>
+              </Link> */}
 
               <DropdownMenu>
                 <DropdownMenuTrigger>
