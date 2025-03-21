@@ -223,6 +223,12 @@ const SearchBar = () => {
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
+
+
+
+
+
+
   return (
     <div className="max-w-6xl mx-auto pt-4">
       <div className="flex flex-wrap gap-6 justify-between">
@@ -234,7 +240,7 @@ const SearchBar = () => {
               setBedrooms(e.target.value);
               handleSearchQuery("bedrooms", e.target.value);
             }}
-            className="w-full sm:w-64 px-4 py-2 border rounded-md shadow-sm"
+            className="w-full sm:w-64 px-4 py-2 border rounded-md shadow-sm "
           >
             <option value="all">All Bedrooms</option>
             <option value="1">1</option>
@@ -267,6 +273,7 @@ const SearchBar = () => {
             type="search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown} // Add this to listen for the Enter key
             className="w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-sm border border-gray-300"
             placeholder="Search By Location"
           />

@@ -1,10 +1,11 @@
 'use client';
-import Logo from "@/assets/svgs/Logo";
+// import Logo from "@/assets/svgs/Logo";
 // import Logo from "@/assets/svgs/logo2.png";
 import { Facebook, Instagram, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+// import logoImg from  "../../assets/svgs/logo_01.png";
+import logoImg from  "../../assets/svgs/basaKhuji-logo.svg";
 const Footer = () => {
   // const navLinks = [
   //   { href: "/", label: "Home" },
@@ -64,16 +65,16 @@ const Footer = () => {
     <footer className="">
       <div className="mx-auto grid max-w-screen-xl gap-y-8 gap-x-12 px-4 py-10 sm:px-20 md:grid-cols-2 xl:grid-cols-4 xl:px-10">
         <div className="max-w-sm">
-          <div className="mb-6 flex h-10 items-center space-x-2 bg-purple-700">
-            {/* <Image
+          <div className="mb-6 flex bg-slate-500 items-center space-x-2 ">
+            <Image
               className="h-full object-contain"
-              src="/images/logo-circle.png"
+              src={logoImg}
               alt="logo"
-              width={50} // Add this
-              height={54} // Add this
-            /> */}
-          <Logo />
-            <span className="text-2xl font-bold">Basa Khuji.com</span>
+              width={150} // Add this
+              height={350} // Add this
+            />
+          {/* <Logo /> */}
+            {/* <span className="text-2xl font-bold">Basa Khuji.com</span> */}
           </div>
           <div className="text-gray-500">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ad a
@@ -150,7 +151,7 @@ const Footer = () => {
                 target="_blank"
               >
                 <Image
-                  src="https://api.producthunt.com/widgets/embed-image/v1/follow.svg?post_id=100070&theme=light"
+                  src={logoImg}
                   alt="Apple - Think&#0032;Different | Product Hunt"
                   style={{ width: "250px", height: "54px" }}
                   width="250"
