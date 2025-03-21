@@ -24,7 +24,7 @@ const AllHousePage = async ({searchParams,}: {searchParams: SearchParams;}) => {
             <p className="mt-8">Results not match, try again</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 bg-purple-500">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
             {allHouseData.map((item: any) => (
               <Link key={item._id} href={`/allHouse/${item._id}`}>
                 <div className="overflow-hidden rounded-xl border bg-white text-gray-700 shadow-md duration-500 ease-in-out hover:shadow-xl w-full">
