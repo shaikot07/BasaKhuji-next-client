@@ -7,14 +7,14 @@ import Link from "next/link";
 // import logoImg from  "../../assets/svgs/logo_01.png";
 import logoImg from  "../../assets/svgs/basaKhuji-logo.svg";
 const Footer = () => {
-  // const navLinks = [
-  //   { href: "/", label: "Home" },
-  //   { href: "/products", label: "App Products" },
-  //   { href: "/about", label: "About Us" },
-  //   { href: "/testimonial", label: "Testimonial" },
-  //   { href: "/blogs", label: "Blogs" },
-  //   { href: "/contact", label: "Contact Us" },
-  // ];
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/products", label: "App Products" },
+    { href: "/about", label: "About Us" },
+    { href: "/testimonial", label: "Testimonial" },
+    { href: "/blogs", label: "Blogs" },
+    { href: "/contact", label: "Contact Us" },
+  ];
 
   // const socialLinks = [
   //   { href: "#", icon: Facebook },
@@ -86,26 +86,13 @@ const Footer = () => {
           <div className="mt-4 mb-2 font-medium xl:mb-4">Guides</div>
           <nav aria-label="Guides Navigation" className="text-gray-500">
             <ul className="space-y-3">
-              <li>
-                <a className="hover:text-blue-600 hover:underline" href="#">
-                  How to make a footer
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-blue-600 hover:underline" href="#">
-                  Designing your app
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-blue-600 hover:underline" href="#">
-                  Getting help from the community
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-blue-600 hover:underline" href="#">
-                  Pricing vs Hourly Rate
-                </a>
-              </li>
+            {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className="hover:text-purple-600">
+                {link.label}
+              </Link>
+            </li>
+          ))}
             </ul>
           </nav>
         </div>
