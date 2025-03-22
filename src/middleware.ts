@@ -43,6 +43,7 @@ export const config = {
   matcher: [
     "/login",
     "/create-shop",
+    "/create-shop",
     "/admin",
     "/admin/:page",
     "/user",
