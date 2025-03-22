@@ -65,12 +65,12 @@ const Footer = () => {
     <footer className="">
       <div className="mx-auto grid max-w-screen-xl gap-y-8 gap-x-12 px-4 py-10 sm:px-20 md:grid-cols-2 xl:grid-cols-4 xl:px-10">
         <div className="max-w-sm">
-          <div className="mb-6 flex  items-center space-x-2 ">
+          <div className="mb-6   bg-pink-500 items-center  ">
             <Image
-              className="h-full object-contain"
+              className="h-full "
               src={logoImg}
               alt="logo"
-              style={{ width: "250px", height: "54px" }}
+              style={{ width: "200px", height: "50px" }}
               width={150} // Add this
               height={150} // Add this
             />
