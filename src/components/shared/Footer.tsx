@@ -99,32 +99,14 @@ const Footer = () => {
         <div className="">
           <div className="mt-4 mb-2 font-medium xl:mb-4">Links</div>
           <nav aria-label="Footer Navigation" className="text-gray-500">
-            <ul className="space-y-3">
-              <li>
-                <a className="hover:text-blue-600 hover:underline" href="#">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-blue-600 hover:underline" href="#">
-                  Demo
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-blue-600 hover:underline" href="#">
-                  Press
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-blue-600 hover:underline" href="#">
-                  Support Hub
-                </a>
-              </li>
-              <li>
-                <a className="hover:text-blue-600 hover:underline" href="#">
-                  Contact
-                </a>
-              </li>
+          <ul className="space-y-3">
+            {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className="hover:text-purple-600">
+                {link.label}
+              </Link>
+            </li>
+          ))}
             </ul>
           </nav>
         </div>
@@ -152,8 +134,8 @@ const Footer = () => {
       </div>
       <div className="border-t">
         <div className="mx-auto flex max-w-screen-xl flex-col gap-y-4 px-4 py-3 text-center text-gray-500 sm:px-20 lg:flex-row lg:justify-between lg:text-left xl:px-10">
-          <p className="">© 2022 Boleno | All Rights Reserved</p>
-          <p className="-order-1 sm:order-none">Made with ❤️ Remotely</p>
+          <p className="">© 2022 Boleno | All Rights Reserved by Shaikot</p>
+          {/* <p className="-order-1 sm:order-none">Made with ❤️ Remotely</p> */}
           <p className="">
             <a className="" href="#">
               Privacy Policy
