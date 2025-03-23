@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 import rangpur from "@/assets/rangpur.jpeg";
 import bogura from "@/assets/bogura.png";
 import rajshahi from "@/assets/rajshahi.png";
 import NMContainer from "@/components/ui/core/NMContainer";
+import { Button } from "@/components/ui/button";
 
 const UpCommingCity = () => {
   const cities = [
@@ -15,44 +17,48 @@ const UpCommingCity = () => {
   ];
   return (
     <NMContainer>
-      <section className="py-2 bg-pink-500 w-full  flex flex-col items-center justify-center">
+      <section className="py-12  w-full  flex flex-col items-center justify-center mt-16">
         <div className="w-full flex justify-between items-center px-6">
           <h2 className="text-4xl font-bold mb-4">
-            Popular Cities{" "}
+            Up comming Cities{" "}
             <span className="underline decoration-orange-500"> </span>
           </h2>
-          <button className="px-4 py-2 border rounded-lg hover:bg-gray-100 transition">
-            Explore All ↗
-          </button>
+          <Link href="/allHouse">
+            <Button className="px-4 py-4 border rounded-lg transition">
+              Explore All ↗
+            </Button>
+          </Link>
         </div>
-        <div className="w-full flex flex-wrap bg-black  justify-between">
+        <div className="w-full flex flex-wrap justify-between mt-16">
           {cities.map((city, index) => (
-            // <div key={index} className="flex flex-col items-center p-4">
-            //   <div className="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden mx-auto">
-            //     <Image
-            //       src={city.image}
-            //       alt={city.name}
-            //       width={224}
-            //       height={224}
-            //       className="object-cover w-full h-full"
-            //     />
-            //   </div>
-            //   <h3 className="text-lg font-semibold mt-3">{city.name}</h3>
-            //   <p className="text-gray-600">{city.listings} Listing</p>
-            // </div>
-
-            <div key={index} className="flex flex-col items-center p-4">
-              <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden mx-auto">
+            <div
+              key={index}
+              className="flex flex-col items-center p-4 text-center animate-fade-up"
+            >
+              {/* Image Wrapper */}
+              <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden mx-auto relative cursor-pointer group">
+                {/* Image */}
                 <Image
                   src={city.image}
                   alt={city.name}
-                  width={256} // Updated to match the new md:w-64 (256px)
-                  height={256} // Updated to match the new md:h-64 (256px)
-                  className="object-cover w-full h-full"
+                  width={256}
+                  height={256}
+                  className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
                 />
+
+                {/* Black Overlay */}
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+
+                {/* Clickable Overlay */}
+                <div className="absolute inset-0 z-10"></div>
               </div>
-              <h3 className="text-lg font-semibold mt-3">{city.name}</h3>
-              <p className="text-gray-600">{city.listings} Listing</p>
+
+              {/* City Name */}
+
+              <h3 className="text-lg font-semibold mt-4">{city.name}</h3>
+
+              {/* Listings Count (Optional) */}
+              {/* <p className="text-gray-600">{city.listings} Listing</p> */}
             </div>
           ))}
         </div>
