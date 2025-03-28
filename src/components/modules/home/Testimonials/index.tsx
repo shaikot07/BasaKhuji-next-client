@@ -13,11 +13,13 @@ import "swiper/css/navigation";
 import { Grid, Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
+import NMContainer from "@/components/ui/core/NMContainer";
 
 const Testimonials = () => {
   return (
     <>
-      <h1 className="text-5xl font-bold text-center pb-20">Testimonials</h1>
+      <NMContainer>
+      <h1 className="text-5xl font-bold text-center mt-10 pb-20">Testimonials</h1>
       <div className="max-w-[1200px] m-auto w-full px-4 py-8 p-5 pb-20">
         <Swiper
           slidesPerView={2}
@@ -106,7 +108,7 @@ const Testimonials = () => {
           }}
         >
           <SwiperSlide>
-            <div className="block rounded-lg bg-white shadow-lg dark:bg-danger-700 dark:shadow-black/30">
+            <div className="block rounded-lg bg-white shadow-lg dark:bg-danger-700 dark:shadow-black/30 ">
               <div className="h-28 overflow-hidden rounded-t-lg bg-[#8D1C2F]"></div>
               <div className="mx-auto -mt-12 w-24 overflow-hidden rounded-full border-2 border-white bg-white dark:border-danger-800 dark:bg-danger-800">
                 <Image src={so} alt="" />
@@ -260,6 +262,7 @@ const Testimonials = () => {
           </SwiperSlide>
         </Swiper>
       </div>
+      </NMContainer>
     </>
   );
 };
