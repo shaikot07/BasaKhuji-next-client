@@ -38,6 +38,17 @@ const ViewSubmittedRentalRequests = () => {
     fetchData();
   }, [user?.userId]);
 
+// -------------------------------------------
+const handlePayment = async (requestId: string) => {
+  console.log(requestId, "this is request id in handle payment function");
+
+}
+
+
+
+
+
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -117,7 +128,7 @@ const ViewSubmittedRentalRequests = () => {
                           Landlord Contact:{" "} <br />
                           {req?.landlordPhoneNumber || "N/A"}
                         </p>
-                        <Button className="mt-2 text-white px-4 py-2 rounded">
+                        <Button onClick={()=>handlePayment(req._id)} className="mt-2 text-white px-4 py-2 rounded">
                           Proceed to Payment
                         </Button>
                       </td>
