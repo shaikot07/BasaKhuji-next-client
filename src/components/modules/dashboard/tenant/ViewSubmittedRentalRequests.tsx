@@ -6,8 +6,10 @@ import { getRequestTentSpecific } from "@/services/Tenant";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
+
 const ViewSubmittedRentalRequests = () => {
   const { user } = useUser();
+  console.log(user, "this is user in view submitted rental request");
 
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

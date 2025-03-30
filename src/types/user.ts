@@ -11,4 +11,5 @@ export interface IUser {
   createdAt: Date;
   updatedAt: Date;
   profileImg?: string;
+  userId: string;
 }
