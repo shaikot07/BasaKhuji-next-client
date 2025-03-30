@@ -41,7 +41,18 @@ const ViewSubmittedRentalRequests = () => {
 // -------------------------------------------
 const handlePayment = async (rentalHouse: string, rentAmount: number) => {
   console.log(rentalHouse,rentAmount, "Rental House ID in handlePayment function");
-  
+  const paymentData = {
+    email: user?.email,
+    rentalHouse: rentalHouse,
+    rentAmount: rentAmount, // Dynamically set rent amount
+  };
+
+  try {
+    
+  } catch (error) {
+    console.error("Payment error:", error);
+    
+  }
 }
 
 
