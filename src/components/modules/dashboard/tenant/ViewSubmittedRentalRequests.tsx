@@ -2,9 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/context/UserContext";
+import { createPyment } from "@/services/pyment";
 import { getRequestTentSpecific } from "@/services/Tenant";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 
 const ViewSubmittedRentalRequests = () => {
@@ -39,8 +41,36 @@ const ViewSubmittedRentalRequests = () => {
   }, [user?.userId]);
 
 // -------------------------------------------
+// const handlePayment = async (rentalHouse: string, rentAmount: number) => {
+//   console.log(rentalHouse,rentAmount, "Rental House ID in handlePayment function");
+//   const paymentData = {
+//     email: user?.email,
+//     rentalHouse: rentalHouse,
+//     rentAmount: rentAmount, // Dynamically set rent amount
+//   };
+
+//   try {
+//     const res = await  createPyment(paymentData); // Assuming createPyment is a function that handles payment processing
+//    console.log( "this is payment response", res);
+//     if (res?.success) {
+//       toast.success(res?.message);
+//     }
+
+//      // Redirect to the payment checkout URL if available
+//      if (data?.data?.payment?.checkout_url) {
+//       setTimeout(() => {
+//         window.location.href = data.data.payment.checkout_url;
+//       }, 1000);
+//     }
+//   } catch (error) {
+//     console.error("Payment error:", error);
+    
+//   }
+// }
+
 const handlePayment = async (rentalHouse: string, rentAmount: number) => {
-  console.log(rentalHouse,rentAmount, "Rental House ID in handlePayment function");
+  console.log(rentalHouse, rentAmount, "Rental House ID in handlePayment function");
+
   const paymentData = {
     email: user?.email,
     rentalHouse: rentalHouse,
@@ -48,13 +78,27 @@ const handlePayment = async (rentalHouse: string, rentAmount: number) => {
   };
 
   try {
-    
+    const res = await createPyment(paymentData); // Assuming createPayment is a function that handles payment processing
+    console.log("This is payment response:", res);
+
+    if (res?.status) { // Using `status` from the response instead of `success`
+      toast.success(res?.message || "Payment initiated successfully");
+    }
+
+    // Redirect to the payment checkout URL if available
+    const checkoutUrl = res?.data?.payment?.checkout_url;
+    if (checkoutUrl) {
+      setTimeout(() => {
+        window.location.href = checkoutUrl;
+      }, 1000);
+    } else {
+      console.warn("No checkout URL found in the response.");
+    }
   } catch (error) {
     console.error("Payment error:", error);
-    
+    toast.error("Payment failed. Please try again.");
   }
-}
-
+};
 
 
 
