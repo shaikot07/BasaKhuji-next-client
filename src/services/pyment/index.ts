@@ -4,7 +4,7 @@
 export const  createPyment = async (modifiedData: any): Promise<any> => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings`,
+        `${process.env.NEXT_PUBLIC_BASE_API}/orders/create-order`,
         {
           method: "POST",
           headers: {
