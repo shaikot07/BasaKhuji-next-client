@@ -364,12 +364,12 @@ const VerifyOrder = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [orderData, setOrderData] = useState<any>(null);
-  const [message, setMessage] = useState("Verifying payment...");
+  // const [message, setMessage] = useState("Verifying payment...");
 
   useEffect(() => {
     const fetchData = async () => {
       if (!orderId || typeof orderId !== "string") {
-        setMessage("Order ID not found in URL");
+        // setMessage("Order ID not found in URL");
         setIsLoading(false);
         return;
       }
@@ -382,14 +382,14 @@ const VerifyOrder = () => {
         if (response?.data?.length > 0) {
           const data = response?.data?.[0];
           setOrderData(data);
-          setMessage(data?.sp_message || "Unknown status");
+          // setMessage(data?.sp_message || "Unknown status");
           console.log("Order Data set:", data);
         } else {
-          setMessage("No order data found.");
+          // setMessage("No order data found.");
         }
       } catch (error) {
         console.error("Payment verification error:", error);
-        setMessage("An error occurred during payment verification.");
+        // setMessage("An error occurred during payment verification.");
       } finally {
         setIsLoading(false);
       }
@@ -407,8 +407,11 @@ const VerifyOrder = () => {
   }
 
   console.log("Order Data:", orderData);
-  const isSuccess = orderData?.sp_message === "Order verified successfully"; // Update the success condition
-
+  // const isSuccess = orderData?.sp_message === "Order verified successfully"; // Update the success condition
+// Extract order status
+  // const isSuccess = orderData?.sp_code === "0000"; // Adjust based on actual success code
+  const isSuccess = orderData?.sp_message?.toLowerCase().includes("success");
+  const message = orderData?.sp_message || "Unknown status";
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="w-full max-w-2xl p-12 mx-4 text-center transition-all transform bg-white shadow-lg rounded-xl hover:shadow-xl">
