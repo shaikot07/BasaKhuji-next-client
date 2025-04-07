@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Logo from "@/assets/svgs/Logo";
 import { Button } from "../ui/button";
-import { LogOut, Menu, ShoppingBag, X } from "lucide-react";
+import { LogOut, Menu,  X } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,

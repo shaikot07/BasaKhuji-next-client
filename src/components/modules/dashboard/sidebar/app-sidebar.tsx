@@ -1,12 +1,9 @@
-"use client";
+"use client"
 
 import * as React from "react";
 import {
   Bot,
-
-  LifeBuoy,
   Map,
-  PieChart,
   Settings,
   SquareTerminal,
 } from "lucide-react";
@@ -24,7 +21,7 @@ import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import Link from "next/link";
 import Logo from "@/assets/svgs/Logo";
-import { useUser } from "@/context/UserContext";
+
 
 // const data = {
 //   navMain: [
@@ -99,16 +96,7 @@ import { useUser } from "@/context/UserContext";
 
 // Define role-based navigation
 
-const navMenus: Record<
-  string,
-  {
-    title: string;
-    url: string;
-    icon: any;
-    isActive?: boolean;
-    items?: { title: string; url: string }[];
-  }[]
-> = {
+const navMenus: Record<string, { title: string; url: string; icon: any; isActive?: boolean; items?: { title: string; url: string }[] }[]> = {
   admin: [
     {
       title: "Dashboard",
@@ -125,14 +113,7 @@ const navMenus: Record<
           title: "Manage users",
           url: "/admin/users",
         },
-        // {
-        //   title: "Manage Categories",
-        //   url: "/user/shop/category",
-        // },
-        // {
-        //   title: "Manage Brands",
-        //   url: "/user/shop/brand",
-        // },
+        
       ],
     },
     {
@@ -173,10 +154,7 @@ const navMenus: Record<
           title: "Manage Rental Request",
           url: "/landlord/dashboard/rentalRequest",
         },
-        {
-          title: "Manage Brands",
-          url: "/user/shop/brand",
-        },
+        
       ],
     },
     // {
@@ -240,14 +218,10 @@ const navMenus: Record<
   ],
 };
 
-export function AppSidebar({
-  ...props
-}: React.ComponentProps<typeof Sidebar> & {
-  userRole: "admin" | "landlord" | "tenant";
-}) {
-  const { user } = useUser();
-  const userRole = user?.role || "tenant"; // default to "tenant" if no role found
-  const navItems = navMenus[userRole] || [];
+export function AppSidebar({ userRole, ...props}: React.ComponentProps<typeof Sidebar> & { userRole: "admin" | "landlord" | "tenant";}) {
+  // const { user } = useUser();
+  // const userRole = user?.role || "tenant"; // Default to "tenant" if no role is found
+  const navItems = navMenus[userRole] || []; // Get the appropriate nav items based on userRole
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
