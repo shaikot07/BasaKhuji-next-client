@@ -5,7 +5,7 @@
 import Image from "next/image";
 import Link from "next/link";
 // import logoImg from  "../../assets/svgs/logo_01.png";
-import logoImg from  "../../assets/svgs/basaKhuji-logo.svg";
+import logoImg from  "../../assets/svgs/logoIcon.png";
 const Footer = () => {
   const navLinks = [
     { href: "/", label: "Home" },
@@ -65,17 +65,17 @@ const Footer = () => {
     <footer className="">
       <div className="mx-auto grid max-w-screen-xl gap-y-8 gap-x-12 px-4 py-10 sm:px-20 md:grid-cols-2 xl:grid-cols-4 xl:px-10">
         <div className="max-w-sm">
-          <div className="mb-6   bg-pink-500 items-center  ">
+          <div className="mb-6    items-center flex  ">
             <Image
               className="h-full "
               src={logoImg}
               alt="logo"
-              style={{ width: "200px", height: "50px" }}
+              style={{ width: "50px", height: "50px" }}
               width={150} // Add this
               height={150} // Add this
             />
           {/* <Logo /> */}
-            {/* <span className="text-2xl font-bold">Basa Khuji.com</span> */}
+            <span className="text-2xl font-bold">Basa Khuji.com</span>
           </div>
           <div className="text-gray-500">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ad a
@@ -123,7 +123,7 @@ const Footer = () => {
                 <Image
                   src={logoImg}
                   alt="Apple - Think&#0032;Different | Product Hunt"
-                  style={{ width: "250px", height: "54px" }}
+                  style={{ width: "50px", height: "50px" }}
                   width="250"
                   height="54"
                 />
