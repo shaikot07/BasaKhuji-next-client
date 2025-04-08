@@ -1,7 +1,7 @@
 'use client';
 // import Logo from "@/assets/svgs/Logo";
 // import Logo from "@/assets/svgs/logo2.png";
-import { Facebook, Instagram, X } from "lucide-react";
+// import { Facebook, Instagram, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 // import logoImg from  "../../assets/svgs/logo_01.png";

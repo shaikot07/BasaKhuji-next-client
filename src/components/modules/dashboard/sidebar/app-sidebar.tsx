@@ -233,7 +233,7 @@ export function AppSidebar({ userRole, ...props}: React.ComponentProps<typeof Si
                   <Logo />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <h2 className="font-bold text-xl">NextMart</h2>
+                  <h2 className="font-bold text-xl"> Basa Khuji.com</h2>
                 </div>
               </Link>
             </SidebarMenuButton>

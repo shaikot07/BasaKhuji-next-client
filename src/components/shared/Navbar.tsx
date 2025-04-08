@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import Logo from "@/assets/svgs/Logo";
+// import Logo from "@/assets/svgs/Logo";
+import logoImg from  "../../assets/svgs/logo-icon.png";
 import { Button } from "../ui/button";
 import { LogOut, Menu,  X } from "lucide-react";
 import Link from "next/link";
@@ -17,6 +18,8 @@ import { logout } from "@/services/AuthService";
 import { useUser } from "@/context/UserContext";
 import { usePathname, useRouter } from "next/navigation";
 import { protectedRoutes } from "@/contants";
+import Image from "next/image";
+import Logo from "@/assets/svgs/Logo";
 
 export default function Navbar() {
   const { user, setIsLoading } = useUser();
@@ -88,10 +91,14 @@ export default function Navbar() {
     <header className="border-b bg-background w-full sticky top-0 z-10">
       <div className="container flex justify-between items-center mx-auto h-16 px-5">
         <Link href="/">
+        
+      
+       
           <h1 className="text-2xl font-black flex items-center">
             <Logo />
-            Basa Khuji
+            Basa Khuji.com
           </h1>
+      
         </Link>
 
         {/* Nav Menu */}
@@ -144,7 +151,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link href={`/${user?.role}/dashboard`}>Dashboard</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>My Shop</DropdownMenuItem>
+                  {/* <DropdownMenuItem>My Shop</DropdownMenuItem> */}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     className="bg-red-500 cursor-pointer"
