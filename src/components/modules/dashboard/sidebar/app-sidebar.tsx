@@ -169,16 +169,16 @@ const navMenus: Record<string, { title: string; url: string; icon: any; isActive
     // },
     {
       title: "Settings",
-      url: "/landlord/settings",
+      url: "/landlord/profile",
       icon: Settings,
       items: [
         {
           title: "Profile",
-          url: "/profile",
+          url: "/landlord/profile",
         },
         {
           title: "Password Change",
-          url: "/profile",
+          url: "/landlord/changePassword",
         },
       ],
     },
