@@ -211,7 +211,11 @@ const navMenus: Record<string, { title: string; url: string; icon: any; isActive
       items: [
         {
           title: "Profile",
-          url: "/profile",
+          url: "/tenant/profile",
+        },
+        {
+          title: "Password Change",
+          url: "/tenant/changePassword",
         },
       ],
     },

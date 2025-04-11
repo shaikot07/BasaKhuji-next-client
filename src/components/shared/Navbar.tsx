@@ -18,7 +18,6 @@ import { logout } from "@/services/AuthService";
 import { useUser } from "@/context/UserContext";
 import { usePathname, useRouter } from "next/navigation";
 import { protectedRoutes } from "@/contants";
-import Image from "next/image";
 import Logo from "@/assets/svgs/Logo";
 
 export default function Navbar() {

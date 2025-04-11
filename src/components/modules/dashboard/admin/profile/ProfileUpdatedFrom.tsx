@@ -15,18 +15,18 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import NMImageUploader from "@/components/ui/core/NMImageUploader";
 import ImagePreviewer from "@/components/ui/core/NMImageUploader/ImagePreviewer";
-import { useRouter } from "next/navigation";
+
 import { toast } from "sonner";
-import { updateRentalHouse } from "@/services/Lanload";
 import { updateUserProfileInfo } from "@/services/ProfileForAll";
+
 
 // Cloudinary Credentials
 const CLOUD_NAME = "dy0b6hvog"; // cloudinary cloud khola ache my gm -personal
 const UPLOAD_PRESET = "bikeshop";
 
-export default function ProfileUpdatedFrom({ user }: any) {
+export default function ProfileUpdatedFrom({ user}: any) {
 
-    console.log("iam crunt user from profile from ", user);
+    console.log("iam crunt userfrom profile from ", user);
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   //   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>(
@@ -34,12 +34,11 @@ export default function ProfileUpdatedFrom({ user }: any) {
   );
  
 
-  const router = useRouter();
+  // const router = userouter();
 
   const form = useForm({
     defaultValues: {
       name: user?.name || "",
-      email: user?.email|| "",
      role: user?.role || " ",
   
     },
@@ -55,7 +54,7 @@ export default function ProfileUpdatedFrom({ user }: any) {
     let imageUrls = imagePreview; // Default to existing images
 
     if (imageFiles.length > 0) {
-      // Upload new images if user added them
+      // Upload new images if useradded them
       const uploadPreset = UPLOAD_PRESET;
       const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
 
@@ -85,7 +84,7 @@ export default function ProfileUpdatedFrom({ user }: any) {
     // Prepare final data to send
     const modifiedData = {
       ...data,
-      profileImg: imageUrls, // Use existing or uploaded images
+      profileImg: imageUrls[0] || "", // Use existing or uploaded images
     
     };
 
@@ -119,7 +118,7 @@ export default function ProfileUpdatedFrom({ user }: any) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex justify-between items-center border-t border-b py-3 my-5">
-          <h1 className="text-xl font-bold">Updated User Info </h1>
+          <h1 className="text-xl font-bold">Updated userInfo </h1>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FormField
@@ -135,22 +134,8 @@ export default function ProfileUpdatedFrom({ user }: any) {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input {...field} value={field.value || ""} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="grid grid-cols-1 my-2 gap-4 md:grid-cols-2">
-            <FormField
+           
+           <FormField
               control={form.control}
               name="role"
               render={({ field }) => (
@@ -164,8 +149,7 @@ export default function ProfileUpdatedFrom({ user }: any) {
               )}
             />
           </div>
-
-          
+  
           {/* ---------------for image------   */}
           <div>
             <div className="flex justify-between items-center border-t border-b py-3 my-5">
@@ -190,7 +174,7 @@ export default function ProfileUpdatedFrom({ user }: any) {
           <Button type="submit" className="mt-5 w-full" disabled={isSubmitting}>
             {isSubmitting
               ? "updating....."
-              : "Updated user Info"}
+              : "Updated userInfo"}
           </Button>
         </form>
       </Form>

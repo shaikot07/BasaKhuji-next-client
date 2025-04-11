@@ -7,6 +7,7 @@ export const updateUserProfileInfo = async (
  userProfileData: any,
   userId: string
 ): Promise<any> => {
+    console.log(userId);
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}/users/${userId}/profileUpdated`,
