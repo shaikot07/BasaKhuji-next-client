@@ -116,11 +116,7 @@ const navMenus: Record<string, { title: string; url: string; icon: any; isActive
         
       ],
     },
-    {
-      title: "ghura dum",
-      url: "/admin/users",
-      icon: Bot,
-    },
+    
     {
       title: "Settings",
       url: "/admin/settings",
@@ -128,7 +124,11 @@ const navMenus: Record<string, { title: string; url: string; icon: any; isActive
       items: [
         {
           title: "Profile",
-          url: "/profile",
+          url: "/admin/profile",
+        },
+        {
+          title: "Change Password",
+          url: "/admin/changePassword",
         },
       ],
     },
