@@ -17,21 +17,20 @@ import NMImageUploader from "@/components/ui/core/NMImageUploader";
 import ImagePreviewer from "@/components/ui/core/NMImageUploader/ImagePreviewer";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-
-import { useUser } from "@/context/UserContext";
 import { updateRentalHouse } from "@/services/Lanload";
+import { updateUserProfileInfo } from "@/services/ProfileForAll";
 
 // Cloudinary Credentials
 const CLOUD_NAME = "dy0b6hvog"; // cloudinary cloud khola ache my gm -personal
 const UPLOAD_PRESET = "bikeshop";
 
-export default function ProfileUpdatedFrom({ rentalHouse }: any) {
-    const { user } = useUser();
-    console.log("iam crunt user from profile up ", user);
+export default function ProfileUpdatedFrom({ user }: any) {
+
+    console.log("iam crunt user from profile from ", user);
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   //   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>(
-    rentalHouse?.images || []
+    user?.profileImg  || []
   );
  
 
@@ -39,12 +38,10 @@ export default function ProfileUpdatedFrom({ rentalHouse }: any) {
 
   const form = useForm({
     defaultValues: {
-      location: rentalHouse?.location || "",
-      description: rentalHouse?.description || "",
-      bath: rentalHouse?.bath || 0,
-      amenities: rentalHouse?.amenities || "",
-      rentAmount: rentalHouse?.rentAmount || 0,
-      bedrooms: rentalHouse?.bedrooms || 0,
+      name: user?.name || "",
+      email: user?.email|| "",
+     role: user?.role || " ",
+  
     },
   });
 
@@ -88,23 +85,21 @@ export default function ProfileUpdatedFrom({ rentalHouse }: any) {
     // Prepare final data to send
     const modifiedData = {
       ...data,
-      rentAmount: parseFloat(data.rentAmount),
-      bedrooms: parseInt(data.bedrooms),
-      images: imageUrls, // Use existing or uploaded images
-      landlordId: user?.userId,
+      profileImg: imageUrls, // Use existing or uploaded images
+    
     };
 
     console.log("Final updated data sent to backend:", modifiedData);
 
     // Send updated rental house data
     try {
-      const res = await updateRentalHouse(modifiedData, rentalHouse._id);
+      const res = await updateUserProfileInfo(modifiedData, user?.userId);
 
       if (res.success) {
         toast.success(res.message);
         form.reset();
         setImageFiles([]);
-        router.push("/landlord/dashboard/allRentalHousrLanload");
+        // router.push("/admin/profile");
       } else {
         toast.error(res.message);
       }
@@ -119,20 +114,20 @@ export default function ProfileUpdatedFrom({ rentalHouse }: any) {
       <div className="flex items-center space-x-4 mb-5 ">
        
 
-        <h1 className="text-xl font-bold">Updated User Info </h1>
+        
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex justify-between items-center border-t border-b py-3 my-5">
-            <p className="text-primary font-bold text-xl">Basic Information</p>
+          <h1 className="text-xl font-bold">Updated User Info </h1>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FormField
               control={form.control}
-              name="location"
+              name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Location</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input {...field} value={field.value || ""} />
                   </FormControl>
@@ -142,10 +137,10 @@ export default function ProfileUpdatedFrom({ rentalHouse }: any) {
             />
             <FormField
               control={form.control}
-              name="rentAmount"
+              name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Rent Amount</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input {...field} value={field.value || ""} />
                   </FormControl>
@@ -157,10 +152,10 @@ export default function ProfileUpdatedFrom({ rentalHouse }: any) {
           <div className="grid grid-cols-1 my-2 gap-4 md:grid-cols-2">
             <FormField
               control={form.control}
-              name="bedrooms"
+              name="role"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Number of Bedroom</FormLabel>
+                  <FormLabel>role</FormLabel>
                   <FormControl>
                     <Input {...field} value={field.value || ""} />
                   </FormControl>
@@ -168,27 +163,13 @@ export default function ProfileUpdatedFrom({ rentalHouse }: any) {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="bath"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Number of Bath room</FormLabel>
-                  <FormControl>
-                    <Input {...field} value={field.value || ""} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-           
           </div>
 
           
           {/* ---------------for image------   */}
           <div>
             <div className="flex justify-between items-center border-t border-b py-3 my-5">
-              <p className="text-primary font-bold text-xl">Images</p>
+              <p className="text-primary font-bold text-xl">profile Image</p>
             </div>
             <div className="flex gap-4 ">
               <NMImageUploader
