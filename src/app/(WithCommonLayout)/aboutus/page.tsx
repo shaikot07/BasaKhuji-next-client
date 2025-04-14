@@ -28,17 +28,19 @@ const aboutUsPage = () => {
       </div>
       {/* second section */}
       <div className="relative z-10 px-6 py-16 lg:py-32 bg-[#FFFFFF]">
+       
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Column */}
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="py-10">About us</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">
               Secure your <span className="underline decoration-orange-500 underline-offset-4">family&apos;s</span><br />
               Dream home.
             </h2>
             <p className="text-lg text-gray-700 mb-6">
               Our founders Dustin Moskovitz and Justin Rosenstein met while leading Engineering.
             </p>
-            <button className="bg-[#FF6A22] hover:bg-[#e85e1b] text-white font-semibold py-2 px-6 rounded-md transition">
+            <button className="bg-[#FF6A22] hover:bg-[#e85e1b] text-white font-semibold py-2 px-6 rounded-md transition mt-2">
               Contact Us
             </button>
 
@@ -55,14 +57,14 @@ const aboutUsPage = () => {
           </div>
 
           {/* Right Column */}
-          <div>
-            <h4 className="text-xl font-semibold mb-2">Who we are?</h4>
-            <p className="text-gray-700 mb-6">
+          <div className=" py-16 px-6 rounded-lg ">
+            <h4 className="text-xl font-semibold mb-6">Who we are?</h4>
+            <p className="text-gray-700 mb-8">
               Our founders Dustin Moskovitz & Justin Rosenstein met leading Engineering teams at Facebook.
               As operations scaled, they grew frustrated by how difficult coordinate.
             </p>
-
-            <h4 className="text-xl font-semibold mb-2">Our Mission</h4>
+            <hr />
+            <h4 className="text-xl font-semibold mb-6 mt-6">Our Mission</h4>
             <p className="text-gray-700">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore aliqua.
             </p>
