@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import bgImg from "@/assets/svgs/aboutus-banner.svg"
+import videoBg from "@/assets/videoBg.jpg"
 
 const aboutUsPage = () => {
   return (
@@ -71,6 +72,27 @@ const aboutUsPage = () => {
           </div>
         </div>
       </div>
+      {/* video section  */}
+      <div className="flex justify-center items-center py-8 px-4 bg-[#FFFFFF]">
+      <div className="relative max-w-5xl w-full rounded-2xl overflow-hidden shadow-lg">
+        <Image
+          src={videoBg}
+          alt="Video preview"
+          className="w-full h-auto object-cover"
+        />
+        <button className="absolute inset-0 flex items-center justify-center">
+          <div className="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition">
+            <svg
+              className="w-10 h-10 text-white"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M6 4l10 6-10 6V4z" />
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
     </div>
   );
 };
