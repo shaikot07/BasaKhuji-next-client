@@ -80,3 +80,15 @@ select option:hover {
   background-color: red !important; /* Background turns red on hover */
   color: white !important; /* Text turns white for contrast */
 }
+
+
+
+
+
+.wavy-underline {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #f97316; /* Tailwind's orange-500 */
+  text-underline-offset: 10px;
+  text-decoration-thickness: 40px;
+}
