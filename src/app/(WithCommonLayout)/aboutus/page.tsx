@@ -1,5 +1,7 @@
+
 import React from "react";
 import Image from "next/image";
+
 import bgImg from "@/assets/svgs/aboutus-banner.svg";
 import videoBg from "@/assets/videoBg.jpg";
 import rightImg from "@/assets/svgs/right.svg";
@@ -59,6 +61,7 @@ const aboutUsPage = () => {
 
             <div className="flex gap-12 mt-10">
               <div>
+              
                 <h3 className="text-3xl font-bold">1.2%</h3>
                 <p className="text-sm text-gray-600">Low interest rate</p>
               </div>
@@ -125,7 +128,6 @@ const aboutUsPage = () => {
 
         {/* Main Content */}
         <div className="relative z-10 max-w-7xl mx-auto text-center">
-       
           <h2 className="text-4xl font-semibold text-black mb-4">
             We’re here to help <br />
             <span className="font-bold wavy-underline text-black">
@@ -206,9 +208,8 @@ const aboutUsPage = () => {
       </div>
       {/* testyminonial section */}
       <div className="bg-[#F5EDE8] py-20 ">
-                {/* <Testimonials /> */}
-                <OurTeam />
-                
+        {/* <Testimonials /> */}
+        <OurTeam />
       </div>
       <Contact />
     </div>
