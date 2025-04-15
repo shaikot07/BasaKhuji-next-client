@@ -9,6 +9,9 @@ import findHome from "@/assets/svgs/findhome.svg";
 import quickProcess from "@/assets/svgs/quekProccess.svg";
 import arrow from "@/assets/svgs/arrow.svg";
 
+import OurTeam from "@/components/modules/aboutUs/OurTeam";
+import Contact from "@/components/modules/aboutUs/Contact";
+
 const aboutUsPage = () => {
   return (
     <div>
@@ -201,6 +204,13 @@ const aboutUsPage = () => {
           </div>
         </div>
       </div>
+      {/* testyminonial section */}
+      <div className="bg-[#F5EDE8] py-20 ">
+                {/* <Testimonials /> */}
+                <OurTeam />
+                
+      </div>
+      <Contact />
     </div>
   );
 };
