@@ -1,0 +1,36 @@
+/* LogoSlider.css */
+
+@keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-250px * 7));
+    }
+  }
+  
+  .slider {
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  
+  .slide-track {
+    display: flex;
+    width: calc(250px * 14); /* 7 logos * 2 */
+    animation: scroll 40s linear infinite;
+  }
+  
+  .slide {
+    height: 100px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
