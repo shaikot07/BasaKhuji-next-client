@@ -19,7 +19,7 @@ const Testimonials = () => {
   return (
     <>
       <NMContainer>
-      <h1 className="text-5xl font-bold text-center mt-10 pb-20">Testimonials</h1>
+      <h1 className="text-5xl font-bold  mt-14 pb-20">Testimonials</h1>
       <div className="max-w-[1200px] m-auto w-full px-4 py-8 p-5 pb-20">
         <Swiper
           slidesPerView={2}
