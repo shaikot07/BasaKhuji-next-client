@@ -91,7 +91,7 @@ const handleKeyDown = (event: React.KeyboardEvent) => {
           <button
             type="button"
             onClick={() => handleSearchQuery("searchTerm", searchTerm)}
-            className="absolute top-0 right-0 p-2.5 text-white bg-[#080808] rounded-sm"
+            className="absolute top-0 right-0 p-2.5 text-white bg-orange-500 rounded-sm"
           >
             <Search />
           </button>

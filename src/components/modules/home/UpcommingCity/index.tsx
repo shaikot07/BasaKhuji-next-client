@@ -24,7 +24,7 @@ const UpCommingCity = () => {
             <span className="underline decoration-orange-500"> </span>
           </h2>
           <Link href="/allHouse">
-            <Button className="px-4 py-4 border rounded-lg transition">
+            <Button className="px-6 border rounded-lg transition bg-orange-500 hover:bg-orange-600 py-3 text-white font-bold ">
               Explore All ↗
             </Button>
           </Link>
@@ -36,13 +36,13 @@ const UpCommingCity = () => {
               className="flex flex-col items-center p-4 text-center animate-fade-up"
             >
               {/* Image Wrapper */}
-              <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden mx-auto relative cursor-pointer group">
+              <div className="w-48 h-48 rounded-full overflow-hidden mx-auto relative cursor-pointer group">
                 {/* Image */}
                 <Image
                   src={city.image}
                   alt={city.name}
-                  width={256}
-                  height={256}
+                  width={100}
+                  height={100}
                   className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
                 />
 

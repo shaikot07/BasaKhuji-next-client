@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import * as React from "react";
@@ -119,7 +120,7 @@ const navMenus: Record<string, { title: string; url: string; icon: any; isActive
     
     {
       title: "Settings",
-      url: "/admin/settings",
+      url: "/admin/profile",
       icon: Settings,
       items: [
         {
@@ -206,7 +207,7 @@ const navMenus: Record<string, { title: string; url: string; icon: any; isActive
    
     {
       title: "Settings",
-      url: "/tenant/settings",
+      url: "/tenant/profile",
       icon: Settings,
       items: [
         {

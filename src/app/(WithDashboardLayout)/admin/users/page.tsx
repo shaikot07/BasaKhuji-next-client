@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"; //it''s  i added here for solve build error
 import UserManagementCart from "@/components/modules/dashboard/admin/UserManagementCart";
 import { getAllUserByAdmin } from "@/services/Admin";
 

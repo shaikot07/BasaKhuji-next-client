@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -76,6 +77,7 @@ const handlePayment = async (rentalHouse: string, rentAmount: number) => {
     rentalHouse: rentalHouse,
     rentAmount: rentAmount, // Dynamically set rent amount
   };
+  console.log(paymentData, "this is payment data");
 
   try {
     const res = await createPyment(paymentData); // Assuming createPayment is a function that handles payment processing

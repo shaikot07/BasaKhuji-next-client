@@ -1,4 +1,5 @@
 
+
 "use client";
 import { useEffect, useState } from "react";
 import ProfileUpdatedFrom from "@/components/modules/dashboard/admin/profile/ProfileUpdatedFrom";
@@ -8,6 +9,7 @@ import avter from "../../../../assets/avater.jpg";
 import { Button } from "@/components/ui/button";
 import { Loader2, Pencil } from "lucide-react";
 import { IUser } from "@/types";
+import { useCallback } from "react";
 
 const ProfilePage = () => {
     const { user, isLoading } = useUser(); 
@@ -16,8 +18,8 @@ console.log("iam crunt singleuser from profile page ", updatedUser);
   const [open, setOpen] = useState(false); // modal open state
 
 
-  // Fetch function moved outside useEffect
-  const fetchData = async () => {
+  // Fetch function wrapped in useCallback
+  const fetchData = useCallback(async () => {
     try {
     //   const res = await fetch(`http://localhost:5000/api/users/${user?.userId}/singleUser`);
       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/${user?.userId}/singleUser`);
@@ -26,14 +28,14 @@ console.log("iam crunt singleuser from profile page ", updatedUser);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, [user?.userId]);
 
   // Fetch data when user changes
   useEffect(() => {
     if (user?.userId) {
       fetchData(); // Call the async function to fetch data
     }
-  }, [user?.userId]); // Trigger on userId change
+  }, [user?.userId, fetchData]); // Include fetchData in dependencies
 
   // Handle modal close and refresh data
   const handleCloseModal = () => {

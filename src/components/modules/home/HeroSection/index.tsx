@@ -1,8 +1,6 @@
 "use client";
-// import { Button } from "@/components/ui/button";
-// import styles from "./HeroSection.module.css";
+
 import Image from "next/image";
-// import cupImg from "@/assets/cup-with-headphone.png";
 import NMContainer from "@/components/ui/core/NMContainer";
 import { useEffect, useState } from "react";
 import b1 from "@/assets/b2.jpg";
@@ -10,7 +8,7 @@ import b2 from "@/assets/bn-2.jpg";
 import b3 from "@/assets/bn3.jpg";
 // ------for search and filter---
 // import { useEffect, useState } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter,  useSearchParams } from "next/navigation";
 
 import { Search } from "lucide-react";
 
@@ -28,7 +26,7 @@ const HeroSection = () => {
   }, []);
   // -------------------for search and filter
   const router = useRouter();
-  const pathname = usePathname();
+
   const searchParams = useSearchParams();
 
   // State for user inputs
@@ -119,7 +117,7 @@ const HeroSection = () => {
                 <button
                   type="button"
                   onClick={() => handleSearchQuery("searchTerm", searchTerm)}
-                  className="absolute top-0 right-0 p-2.5 text-white bg-[#080808] rounded-sm"
+                  className="absolute top-0 right-0 p-2.5 text-white bg-orange-500 hover:bg-orange-600 rounded-sm"
                 >
                   <Search />
                 </button>

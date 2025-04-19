@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 // import Logo from "@/assets/svgs/Logo";
-import logoImg from  "../../assets/svgs/logo-icon.png";
+
 import { Button } from "../ui/button";
 import { LogOut, Menu,  X } from "lucide-react";
 import Link from "next/link";
@@ -38,7 +38,7 @@ export default function Navbar() {
     <ul className="list-none flex flex-col md:flex-row gap-4">
       <li>
         <Link
-          className="rounded-none text-black font-bold border-b-0 hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+          className="rounded-none text-black font-bold border-b-0 hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
           href={"/"}
         >
           Home
@@ -48,7 +48,7 @@ export default function Navbar() {
         <>
           <li>
             <Link
-              className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+              className="rounded-none text-black font-bold hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
               href={"/allHouse"}
             >
               All Home
@@ -56,8 +56,8 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
-              href={"/aboutUs"}
+              className="rounded-none text-black font-bold hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+              href={"/aboutus"}
             >
               About us
             </Link>
@@ -67,7 +67,7 @@ export default function Navbar() {
         <>
           <li>
             <Link
-              className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+              className="rounded-none text-black font-bold hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
               href={"/allHouse"}
             >
               All House
@@ -75,8 +75,8 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              className="rounded-none text-black font-bold hover:!text-[#F2355F] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
-              href={"/aboutUs"}
+              className="rounded-none text-black font-bold hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
+              href={"/aboutus"}
             >
               About us
             </Link>
@@ -128,7 +128,7 @@ export default function Navbar() {
         {/* Right Icons & User Profile */}
         <nav className="flex gap-2">
           <Link href="/landlord/dashboard/allRentalHousrLanload">
-            <Button className="rounded-full">Post Rental House</Button>
+            <Button className="rounded-full bg-orange-500 hover:bg-orange-600">Post Rental House</Button>
           </Link>
           {user?.email ? (
             <>
@@ -164,7 +164,7 @@ export default function Navbar() {
             </>
           ) : (
             <Link href="/login">
-              <Button className="rounded-full border-2 border-black hover:bg-[#2F2E30] hover:text-white" variant="outline">
+              <Button className="rounded-full border-2  hover:bg-orange-600 hover:text-white" variant="outline">
                 Login
               </Button>
             </Link>

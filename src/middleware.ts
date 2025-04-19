@@ -6,8 +6,11 @@ type Role = keyof typeof roleBasedPrivateRoutes;
 const authRoutes = ["/login", "/register"];
 
 const roleBasedPrivateRoutes = {
-  user: [/^\/user/, /^\/create-shop/],
-  admin: [/^\/admin/],
+  // user: [/^\/user/, /^\/create-shop/],
+  admin: [/^\/admin/, /^\/admin\/.*/],     // admin can access /admin and any sub-page under it
+  tenant: [/^\/tenant/, /^\/tenant\/.*/],   // tenant can access /tenant and any sub-page under it
+  landlord: [/^\/landlord/, /^\/landlord\/.*/], // landlord can access /landlord and any sub-page under it
+  user: [/^\/user/, /^\/user\/.*/], // user can access /user and any sub-page under it
 };
 
 export const middleware = async (request: NextRequest) => {
@@ -42,12 +45,11 @@ export const middleware = async (request: NextRequest) => {
 export const config = {
   matcher: [
     "/login",
-    "/create-shop",
-    "/create-shop",
-    "/admin",
-    "/admin/:page",
-    "/user",
-    "/user/:page",
-    // "/allHouse/:page",
+    "/register",
+    "/admin/:path*",
+    "/tenant/:path*",
+    "/landlord/:path*",
+    "/user/:path*",
+    "/allHouse/:path*",
   ],
 };

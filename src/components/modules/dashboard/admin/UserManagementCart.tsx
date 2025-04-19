@@ -1,17 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { TUser } from "@/types";
+
 import { blockUser, updatedRole } from "@/services/Admin";
 import { toast } from "sonner";
+import { IUser } from "@/types";
 
-const UserManagementCart = ({ userData }: { userData: TUser[] }) => {
+const UserManagementCart = ({ userData }: { userData: IUser[] }) => {
   const [users, setUsers] = useState(userData); // State to store users
-  const [loading, setLoading] = useState<string | null>(null); // Store the user ID being updated
+  const [loading,setLoading ] = useState<string | null>(null); // Store the user ID being updated
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
-  const [selectedUser, setSelectedUser] = useState<TUser | null>(null); // State for the selected user
+  const [selectedUser, setSelectedUser] = useState<IUser | null>(null); // State for the selected user
   const [newRole, setNewRole] = useState("tenant"); // New role for the selected user
 
   // Handle Block/Unblock Action

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { Button } from "@/components/ui/button";
 import {
@@ -113,3 +114,5 @@ export default function LoginForm() {
     </div>
   );
 }
+
+
