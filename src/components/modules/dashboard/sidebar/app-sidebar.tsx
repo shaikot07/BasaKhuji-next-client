@@ -148,6 +148,10 @@ const navMenus: Record<string, { title: string; url: string; icon: any; isActive
       icon: Map,
       items: [
         {
+          title: "All Rental House ",
+          url: "/landlord/dashboard/allRentalHousrLanload",
+        },
+        {
           title: "Post Rental House ",
           url: "/landlord/dashboard/postRentalHouse",
         },

@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "bashakhuji",
-  description: "bashakhuji is a rental house management system",
+  title: "basha khuji",
+  description: "basha khuji.com is a rental house management system",
 };
 
 export default function RootLayout({

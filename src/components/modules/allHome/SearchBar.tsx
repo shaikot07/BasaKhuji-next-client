@@ -1,8 +1,6 @@
-
-
 "use client";
 
-import {  useState } from "react";
+import { useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -18,6 +16,7 @@ const SearchBar = () => {
   const [bedrooms, setBedrooms] = useState("all");
   const [rentAmount, setRentAmount] = useState("all");
 
+
   // Function to update query params and fetch data
   const handleSearchQuery = (query: string, value: string | number) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -30,15 +29,12 @@ const SearchBar = () => {
   };
 
 
-
-// Handle key press event for Enter
-const handleKeyDown = (event: React.KeyboardEvent) => {
-  if (event.key === 'Enter') {
-    handleSearchQuery("searchTerm", searchTerm);
-  }
-};
-
-
+  // Handle key press event for Enter
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      handleSearchQuery("searchTerm", searchTerm);
+    }
+  };
 
   return (
     <div className="max-w-6xl mx-auto pt-4">
@@ -73,10 +69,16 @@ const handleKeyDown = (event: React.KeyboardEvent) => {
             className="w-full sm:w-64 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1"
           >
             <option value="all">Sort By Amount</option>
-            <option value="200">Rent: 200</option>
-            <option value="300">Rent: 300</option>
+            <option value="7500">Rent: 7500</option>
+            <option value="10500">Rent: 10500</option>
+            <option value="1400">Rent: 1400</option>
+            <option value="8000">Rent: 8000</option>
+            <option value="9500">Rent: 9500</option>
+            <option value="13000">Rent: 13000</option>
           </select>
         </div>
+        {/* ------------------------  */}
+        
 
         {/* Search Input */}
         <div className="relative w-full sm:w-[420px]">

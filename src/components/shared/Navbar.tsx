@@ -3,7 +3,7 @@ import { useState } from "react";
 // import Logo from "@/assets/svgs/Logo";
 
 import { Button } from "../ui/button";
-import { LogOut, Menu,  X } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -90,14 +90,10 @@ export default function Navbar() {
     <header className="border-b bg-background w-full sticky top-0 z-10">
       <div className="container flex justify-between items-center mx-auto h-16 px-5">
         <Link href="/">
-        
-      
-       
           <h1 className="text-2xl font-black flex items-center">
             <Logo />
             Basa Khuji.com
           </h1>
-      
         </Link>
 
         {/* Nav Menu */}
@@ -127,9 +123,13 @@ export default function Navbar() {
 
         {/* Right Icons & User Profile */}
         <nav className="flex gap-2">
-          <Link href="/landlord/dashboard/allRentalHousrLanload">
-            <Button className="rounded-full bg-orange-500 hover:bg-orange-600">Post Rental House</Button>
-          </Link>
+          {user?.role === "landlord" && (
+            <Link href="/landlord/dashboard/postRentalHouse">
+              <Button className="rounded-full bg-orange-500 hover:bg-orange-600">
+                Post Rental House
+              </Button>
+            </Link>
+          )}
           {user?.email ? (
             <>
               {/* <Link href="/create-shop">
@@ -146,7 +146,7 @@ export default function Navbar() {
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  {/* <DropdownMenuItem>Profile</DropdownMenuItem> */}
                   <DropdownMenuItem>
                     <Link href={`/${user?.role}/dashboard`}>Dashboard</Link>
                   </DropdownMenuItem>
@@ -164,7 +164,10 @@ export default function Navbar() {
             </>
           ) : (
             <Link href="/login">
-              <Button className="rounded-full border-2  hover:bg-orange-600 hover:text-white" variant="outline">
+              <Button
+                className="rounded-full border-2  hover:bg-orange-600 hover:text-white"
+                variant="outline"
+              >
                 Login
               </Button>
             </Link>

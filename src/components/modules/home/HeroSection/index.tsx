@@ -8,7 +8,7 @@ import b2 from "@/assets/bn-2.jpg";
 import b3 from "@/assets/bn3.jpg";
 // ------for search and filter---
 // import { useEffect, useState } from "react";
-import { useRouter,  useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Search } from "lucide-react";
 
@@ -65,9 +65,7 @@ const HeroSection = () => {
           <h1 className="text-5xl font-bold">
             Find the Right Home for Your Family
           </h1>
-          <p className="mt-6">
-            We’ve more than 100 house, place & plot.
-          </p>
+          <p className="mt-6">We’ve more than 100 house, place & plot.</p>
           <div className="mt-12 flex gap-2 bg-[#FFFFFF] p-6 rounded-lg">
             <div className="flex flex-wrap gap-6 justify-between text-black">
               {/* Bedroom Filter */}
@@ -100,8 +98,12 @@ const HeroSection = () => {
                   className="w-full sm:w-64 px-4 py-2  focus:outline-none focus:ring-1"
                 >
                   <option value="all">Sort By Amount</option>
-                  <option value="200">Rent: 200</option>
-                  <option value="300">Rent: 300</option>
+                  <option value="7500">Rent: 7500</option>
+                  <option value="10500">Rent: 10500</option>
+                  <option value="1400">Rent: 1400</option>
+                  <option value="8000">Rent: 8000</option>
+                  <option value="9500">Rent: 9500</option>
+                  <option value="13000">Rent: 13000</option>
                 </select>
               </div>
 

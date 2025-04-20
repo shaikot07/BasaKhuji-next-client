@@ -14,7 +14,7 @@ const HomePage = () => {
     window.innerWidth < 1024 ? 'tablet' : 'desktop' : 'desktop';
 
   return (
-    <div className="bg-pink-800">
+    <div className="">
       <Suspense fallback={<div>Loading...</div>}>
       <HeroSection />
       <UpCommingCity />
