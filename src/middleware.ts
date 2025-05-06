@@ -129,6 +129,6 @@ export const config = {
     "/tenant/:path*",
     "/landlord/:path*",
     "/user/:path*",
-    "/allHouse/:path*",
+    // "/allHouse/:path*",
   ],
 };
