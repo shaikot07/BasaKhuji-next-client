@@ -19,7 +19,7 @@ const UpCommingCity = () => {
     <NMContainer>
       <section className="py-12  w-full  flex flex-col items-center justify-center mt-16">
         <div className="w-full flex justify-between items-center px-6">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-4xl font-semibold text-black mb-4">
             Up comming Cities{" "}
             <span className="underline decoration-orange-500"> </span>
           </h2>
@@ -29,7 +29,7 @@ const UpCommingCity = () => {
             </Button>
           </Link>
         </div>
-        <div className="w-full flex flex-wrap justify-between mt-16">
+        <div className="w-full flex flex-wrap justify-between mt-8">
           {cities.map((city, index) => (
             <div
               key={index}
@@ -41,8 +41,8 @@ const UpCommingCity = () => {
                 <Image
                   src={city.image}
                   alt={city.name}
-                  width={100}
-                  height={100}
+                  width={80}
+                  height={80}
                   className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
                 />
 

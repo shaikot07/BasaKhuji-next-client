@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import un1 from '@/assets/svgs/un1.svg';
 import un2 from '@/assets/svgs/un2.svg';
-import un3 from '@/assets/svgs/un3.svg';
+import un3 from '@/assets/svgs/un33.svg';
 const Unlock = () => {
     return (
         <div className="relative bg-white py-20 overflow-hidden">

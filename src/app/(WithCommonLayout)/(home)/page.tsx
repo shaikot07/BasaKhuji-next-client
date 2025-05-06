@@ -2,6 +2,7 @@
 
 import GetQuick from "@/components/modules/home/Get quick/GetQuick";
 import HeroSection from "@/components/modules/home/HeroSection";
+import HomeNewCard from "@/components/modules/home/HomeNewCard.tsx/HomeNewCard";
 import LogoSlider from "@/components/modules/home/LogoSlider/LogoSlider";
 import ParaLux from "@/components/modules/home/ParaLux/ParaLux";
 import Testimonials from "@/components/modules/home/Testimonials";
@@ -20,6 +21,7 @@ const HomePage = () => {
       <Suspense fallback={<div>Loading...</div>}>
       <HeroSection />
       <UpCommingCity />
+      <HomeNewCard />
       <WeAreHere/>
       <GetQuick />
       <Unlock />
