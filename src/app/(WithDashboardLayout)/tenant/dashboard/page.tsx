@@ -56,6 +56,7 @@ import { useEffect, useState } from "react";
 import OrderSummaryChart from "@/components/modules/dashboard/tenant/chart/OrderSummaryChart";
 import { Skeleton } from "@/components/ui/skeleton";
 import NavDashboard from "@/components/shared/NavDashboard";
+import { request } from "http";
 
 interface RentalSummary {
   pending: number;
@@ -69,6 +70,7 @@ export default function UserDashboard() {
   const [summary, setSummary] = useState<RentalSummary | null>(null);
   const [orderSummary, setOrderSummary] = useState(null);
 
+  // rental request summary for tent 
   useEffect(() => {
     if (!user?.userId) return;
 
@@ -109,14 +111,14 @@ export default function UserDashboard() {
         </div>
         <div className="aspect-video rounded-xl bg-muted p-4 flex flex-col justify-center">
           {summary ? (
-            <h4>hi i am two</h4>
+            <h4 className="text-center font-bold">Right now not available</h4>
           ) : (
             <Skeleton className="w-1/2 h-6 rounded" />
           )}
         </div>
         <div className="aspect-video rounded-xl bg-muted p-4 flex flex-col justify-center">
           {summary ? (
-            <h4>hi i am three</h4>
+             <h4 className="text-center font-bold">Right now not available</h4>
           ) : (
             <Skeleton className="w-1/2 h-6 rounded" />
           )}

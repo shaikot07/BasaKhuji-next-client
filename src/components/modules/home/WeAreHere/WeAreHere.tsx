@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image"; // Added Image import
 import rightImg from "@/assets/svgs/right.svg";
 import leftImg from "@/assets/svgs/left.svg";

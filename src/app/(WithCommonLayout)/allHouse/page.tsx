@@ -96,9 +96,9 @@
 // export default AllHousePage;
 
 
-// ---------------new code for testing ....... 
+// ---------------right code  ....... 
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import SearchBar from "@/components/modules/allHome/SearchBar";
 import { getAllHouse } from "@/services/Lanload";
