@@ -5,7 +5,7 @@ import un2 from '@/assets/svgs/un2.svg';
 import un3 from '@/assets/svgs/un33.svg';
 const Unlock = () => {
     return (
-        <div className="relative bg-white py-20 overflow-hidden">
+        <div className="relative bg-white py-20 overflow-hidden -z-10">
         {/* Background illustrations */}
         {/* <Image
           src={un1}

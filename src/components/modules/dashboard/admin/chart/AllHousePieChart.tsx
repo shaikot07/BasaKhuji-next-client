@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
-import { Card, CardContent } from "@/components/ui/card";
 import { getAllHouse } from "@/services/Lanload";
 
 // Define two colors: Pink and Blue

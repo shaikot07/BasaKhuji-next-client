@@ -87,8 +87,8 @@ export default function Navbar() {
   );
 
   return (
-    <header className="border-b bg-background w-full sticky top-0 z-10">
-      <div className="container flex justify-between items-center mx-auto h-16 px-5">
+    <header className="border-b bg-[#FFF7F0] w-full sticky top-0 z-10">
+      <div className="container flex justify-between items-center mx-auto h-16 px-5 ">
         <Link href="/">
           <h1 className="text-2xl font-black flex items-center">
             <Logo />

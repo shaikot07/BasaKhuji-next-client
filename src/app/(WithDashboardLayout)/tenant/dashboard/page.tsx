@@ -56,7 +56,7 @@ import { useEffect, useState } from "react";
 import OrderSummaryChart from "@/components/modules/dashboard/tenant/chart/OrderSummaryChart";
 import { Skeleton } from "@/components/ui/skeleton";
 import NavDashboard from "@/components/shared/NavDashboard";
-import { request } from "http";
+
 
 interface RentalSummary {
   pending: number;

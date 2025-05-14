@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+
 // import Logo from "@/assets/svgs/Logo";
 
 import { Button } from "../ui/button";
-import { LogOut, Menu, X } from "lucide-react";
+import { LogOut, } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -18,13 +18,13 @@ import { logout } from "@/services/AuthService";
 import { useUser } from "@/context/UserContext";
 import { usePathname, useRouter } from "next/navigation";
 import { protectedRoutes } from "@/contants";
-import Logo from "@/assets/svgs/Logo";
+
 
 export default function NavDashboard() {
   const { user, setIsLoading } = useUser();
   const pathname = usePathname();
   const router = useRouter();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogOut = () => {
     logout();
@@ -34,57 +34,7 @@ export default function NavDashboard() {
     }
   };
 
-  const menu = (
-    <ul className="list-none flex flex-col md:flex-row gap-4">
-      <li>
-        <Link
-          className="rounded-none text-black font-bold border-b-0 hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
-          href={"/"}
-        >
-          Home
-        </Link>
-      </li>
-      {user ? (
-        <>
-          <li>
-            <Link
-              className="rounded-none text-black font-bold hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
-              href={"/allHouse"}
-            >
-              All Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="rounded-none text-black font-bold hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
-              href={"/aboutus"}
-            >
-              About us
-            </Link>
-          </li>
-        </>
-      ) : (
-        <>
-          <li>
-            <Link
-              className="rounded-none text-black font-bold hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
-              href={"/allHouse"}
-            >
-              All House
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="rounded-none text-black font-bold hover:!text-[#EA580C] hover:border-[#F2355F] hover:border-b-2 transition duration-300 focus:!text-[#F2355F]"
-              href={"/aboutus"}
-            >
-              About us
-            </Link>
-          </li>
-        </>
-      )}
-    </ul>
-  );
+
 
   return (
     <header className="border-b bg-background w-full sticky top-0 z-10">

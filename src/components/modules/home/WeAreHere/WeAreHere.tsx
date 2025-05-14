@@ -11,7 +11,7 @@ import NMContainer from "@/components/ui/core/NMContainer";
 const WeAreHere = () => {
   return (
     <NMContainer>
-      <div className="relative bg-white py-20 overflow-hidden">
+      <div className="relative bg-white py-20 overflow-hidden -z-10">
         {/* Background illustrations */}
         <Image
           src={rightImg}
@@ -27,12 +27,12 @@ const WeAreHere = () => {
         {/* Main Content */}
         <div className="relative z-10 max-w-7xl mx-auto text-center">
           <h2 className="text-4xl font-semibold text-black mb-4">
-            We’re here to help <br />
+            {/* We’re here to help <br /> */}
             <span className="font-bold wavy-underline text-black">
-              you get your dream home
+              You get your dream home
             </span>
           </h2>
-          <p className="text-gray-600 px-2 mb-12 mt-6 text-base sm:text-lg md:text-xl lg:text-2xl">
+          <p className="text-gray-600 px-2 mb-12 mt-6 text-base sm:text-lg md:text-xl ">
             It’s easy to start with us—just follow these simple steps.
           </p>
           {/* Steps */}

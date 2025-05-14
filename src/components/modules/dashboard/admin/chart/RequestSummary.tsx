@@ -8,7 +8,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import {  CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 type RentalSummary = {
   pending: number;
