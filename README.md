@@ -1,7 +1,11 @@
 # 🏠 BashaKhuji.com - Smart Rental Housing Platform
 
 ## 📌 Project Overview
-**BashaKhuji** is a full-stack web application that connects **landlords**, **tenants**, and an **admin** to provide a seamless rental experience. The platform features house listings, request handling, secure payments, and role-based dashboards — all in one place.
+**BashaKhuji** is a full-stack web application designed to connect landlords, tenants, and an admin, providing a seamless rental experience. The platform features house listings, request handling, secure payments, and role-based dashboards — all in one place.
+
+Imagine this: Koli is moving to a new city for her job and needs a safe, affordable place to stay. Meanwhile, Mr. Shaikot has an empty house he wants to rent out but struggles to find trustworthy tenants. Enter BashaKhuji — Koli can easily browse verified listings, send requests, and make secure payments, while Mr. Shaikot can manage inquiries and payments through his dashboard. Behind the scenes, the admin ensures the platform runs smoothly and safely.
+
+As a demo to solve a real-life problem, I built BashaKhuji to make finding and renting a house less stressful. This platform makes the process easy, transparent, and efficient for everyone involved.
 
 ## 🛠️ Technologies Used
 - **Frontend:** Next.js, TypeScript, React, Tailwind CSS
